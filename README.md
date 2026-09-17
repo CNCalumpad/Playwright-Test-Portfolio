@@ -17,13 +17,6 @@ git clone https://github.com/CNCalumpad/Playwright-Test-Portfolio
 cd <repo-folder-name>
 ```
 
-> [!NOTE]
-> dotenv is needed for environment variables to work. place the website that will be tested in your env.
-
-```
-npm install dotenv
-```
-
 Then follow the setup steps for your operating system below.
 
 ### Windows
