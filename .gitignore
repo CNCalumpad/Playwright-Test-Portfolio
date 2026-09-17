@@ -6,4 +6,8 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+<<<<<<< Updated upstream
 .env
+=======
+.env
+>>>>>>> Stashed changes
