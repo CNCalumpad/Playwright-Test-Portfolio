@@ -19,7 +19,43 @@ cd <repo-folder-name>
 
 Then follow the setup steps for your operating system below.
 
-### macOS (Ventura)
+### Windows
+
+1. **Install Node.js** from the [official installer](https://nodejs.org/) (LTS version), or via [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/):
+
+```powershell
+   winget install OpenJS.NodeJS.LTS
+```
+
+Verify the install (PowerShell or Command Prompt):
+
+```powershell
+   node -v
+   npm -v
+```
+
+2. **Install project dependencies:**
+
+```powershell
+   npm install
+```
+
+3. **Install Playwright browsers:**
+
+```powershell
+   npx playwright install
+```
+
+4. **Run the tests:**
+
+```powershell
+   npx playwright test
+```
+
+### macOS
+
+> [!NOTE]
+> For macOS, I will be using macOS 13 (Ventura).
 
 1. **Install Node.js** (if not already installed).
    - **Recommended:** download the LTS installer (`.pkg`) directly from [nodejs.org](https://nodejs.org/) and run it. This works regardless of your Mac's chip (Intel or Apple Silicon) and sidesteps any package-manager setup.
@@ -29,7 +65,8 @@ Then follow the setup steps for your operating system below.
      brew install node
 ```
 
-- **Alternative (Intel Macs):** Homebrew has been phasing out Intel support (downgraded as of Sept 2026, with newer installer versions blocking Intel entirely). If you hit that wall, [MacPorts](https://www.macports.org/install.php) is a working substitute:
+> [!IMPORTANT]
+> **Alternative (Intel Macs):** Homebrew has been phasing out Intel support (downgraded as of Sept 2026, with newer installer versions blocking Intel entirely). If you hit that wall, [MacPorts](https://www.macports.org/install.php) is a working substitute:
 
 ```bash
      sudo port install nodejs-lts
@@ -91,39 +128,6 @@ Verify the install:
 > The `--with-deps` flag installs the system libraries Playwright's browsers need on Linux (this usually requires `sudo`). 4. **Run the tests:**
 
 ```bash
-   npx playwright test
-```
-
-### Windows
-
-1. **Install Node.js** from the [official installer](https://nodejs.org/) (LTS version), or via [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/):
-
-```powershell
-   winget install OpenJS.NodeJS.LTS
-```
-
-Verify the install (PowerShell or Command Prompt):
-
-```powershell
-   node -v
-   npm -v
-```
-
-2. **Install project dependencies:**
-
-```powershell
-   npm install
-```
-
-3. **Install Playwright browsers:**
-
-```powershell
-   npx playwright install
-```
-
-4. **Run the tests:**
-
-```powershell
    npx playwright test
 ```
 
