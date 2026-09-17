@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("TID 001: Register User", async ({ page }) => {
+test("TID-001: Register User", async ({ page }) => {
   // Make registration unique each run by using a timestamp.
 
   const timestamp = Date.now();
