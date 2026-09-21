@@ -10,10 +10,8 @@ Snapshot updated: **[date]**.
 
 - **0 passed / 0 failed / 0 flaky / 0 skipped** out of **0** automated scenarios.
 - Last run duration: **0.0s**.
-- [View the full Playwright report](#) for step-by-step traces on any failure.
+- [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 <!-- SNAPSHOT:END -->
-
-## Automated Test Cases
 
 ## Automated Scenarios
 

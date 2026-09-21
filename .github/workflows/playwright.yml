@@ -6,7 +6,7 @@ on:
     branches: [main, master, feat/Register]
 
 permissions:
-  contents: write # needed so this workflow can push the snapshot commit back
+  contents: write   # needed so this workflow can push the snapshot commit and the report
 
 jobs:
   test:
@@ -24,7 +24,7 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         id: run-tests
-        continue-on-error: true # keep going so the snapshot still reflects a failure
+        continue-on-error: true   # keep going so the snapshot still reflects a failure
         env:
           BASE_URL: ${{ vars.BASE_URL }}
           TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
@@ -39,6 +39,12 @@ jobs:
         with:
           commit_message: "chore: update test snapshot [skip ci]"
           file_pattern: "README.md docs/TEST_CASES.md"
+      - name: Deploy report to GitHub Pages
+        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./playwright-report
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
