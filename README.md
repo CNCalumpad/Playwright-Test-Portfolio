@@ -58,7 +58,7 @@ Verify the install (PowerShell or Command Prompt):
 > For macOS, I will be using macOS 13 (Ventura).
 
 > [!WARNING]
-> **Limitation:** MacOS Ventura support for Playwright browsers is discontinued on the latest versions. I've set up a script that initializes a legacy version of Playwright for this specific MacOS, to be able to perform tests. It's located under /scripts/setup-legacy-macos.sh
+> **Limitation:** MacOS Ventura support for Playwright browsers is discontinued on the latest versions. I've set up a script that initializes a legacy version of Playwright for this specific MacOS, to be able to perform tests. It's located under `/scripts/setup-legacy-macos.sh`
 
 1. **Install Node.js** (if not already installed).
    - **Recommended:** download the LTS installer (`.pkg`) directly from [nodejs.org](https://nodejs.org/) and run it. This works regardless of your Mac's chip (Intel or Apple Silicon) and sidesteps any package-manager setup.
