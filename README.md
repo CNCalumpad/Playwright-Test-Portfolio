@@ -57,6 +57,9 @@ Verify the install (PowerShell or Command Prompt):
 > [!NOTE]
 > For macOS, I will be using macOS 13 (Ventura).
 
+> [!WARNING]
+> **Limitation:** MacOS Ventura support for Playwright browsers is discontinued on the latest versions. I've set up a script that initializes a legacy version of Playwright for this specific MacOS, to be able to perform tests. It's located under /scripts/setup-legacy-macos.sh
+
 1. **Install Node.js** (if not already installed).
    - **Recommended:** download the LTS installer (`.pkg`) directly from [nodejs.org](https://nodejs.org/) and run it. This works regardless of your Mac's chip (Intel or Apple Silicon) and sidesteps any package-manager setup.
    - **Alternative (Apple Silicon Macs):** [Homebrew](https://brew.sh/) works fine on Ventura for Apple Silicon:
@@ -66,7 +69,7 @@ Verify the install (PowerShell or Command Prompt):
 ```
 
 > [!IMPORTANT]
-> **Alternative (Intel Macs):** Homebrew has been phasing out Intel support (downgraded as of Sept 2026, with newer installer versions blocking Intel entirely). If you hit that wall, [MacPorts](https://www.macports.org/install.php) is a working substitute:
+> **Alternative (Intel Macs):** Homebrew has been phasing out Intel support (downgraded as of Sept 2026, with newer installer versions blocking Intel entirely). If you hit that wall, [MacPorts](https://www.macports.org/install.php) is a working substitute, or just grab the .pkg from the Node.js download page to install it.
 
 ```bash
      sudo port install nodejs-lts
