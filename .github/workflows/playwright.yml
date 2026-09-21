@@ -4,6 +4,10 @@ on:
     branches: [main, master, feat/Register]
   pull_request:
     branches: [main, master, feat/Register]
+
+permissions:
+  contents: write # needed so this workflow can push the snapshot commit back
+
 jobs:
   test:
     timeout-minutes: 60
@@ -19,12 +23,28 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
+        id: run-tests
+        continue-on-error: true # keep going so the snapshot still reflects a failure
+        env:
+          BASE_URL: ${{ vars.BASE_URL }}
+          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
+          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
         run: npx playwright test
-      - name: Install dotenv
-        run: npm install dotenv
+      - name: Update README snapshot and test case statuses
+        if: always()
+        run: node scripts/update-snapshot.js
+      - name: Commit updated README and docs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update test snapshot [skip ci]"
+          file_pattern: "README.md docs/TEST_CASES.md"
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - name: Fail the job if tests failed
+        if: steps.run-tests.outcome == 'failure'
+        run: exit 1
