@@ -7,8 +7,8 @@ This is a Playwright Test portfolio I made to showcase my progress in upskilling
 <!-- SNAPSHOT:START -->
 Snapshot updated: **2026-09-21**.
 
-- **3 passed / 0 failed / 0 flaky / 0 skipped** out of **3** automated scenarios.
-- Last run duration: **21.0s**.
+- **2 passed / 0 failed / 1 flaky / 0 skipped** out of **3** automated scenarios.
+- Last run duration: **54.5s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 <!-- SNAPSHOT:END -->
 
