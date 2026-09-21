@@ -1,4 +1,4 @@
-# Test Case Sheet
+# Test Cases
 
 This is the test case doc for the automated tests I will be doing. Each case's ID matches the prefix of the matching test title in `tests/*.spec.ts` (e.g. `test('TID_001_ ...')`).
 
