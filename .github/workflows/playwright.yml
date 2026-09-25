@@ -27,7 +27,7 @@ jobs:
         continue-on-error: true # keep going so the snapshot still reflects a failure
         env:
           BASE_URL: ${{ vars.BASE_URL }}
-        run: npx playwright test
+        run: npx playwright test --trace on --workers=3
       - name: Update README snapshot and test case statuses
         if: always()
         run: node scripts/update-snapshot.js
