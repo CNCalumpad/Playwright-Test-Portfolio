@@ -19,7 +19,7 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 | ID | Scenario | Module | Severity | Status |
 | --- | --- | --- | --- | --- |
 | TID-001 | Register User | Authentication | Critical | Automated |
-| TID-002 | Login User with correct email and password | Authentication | Critical | Not Started |
+| TID-002 | Login User with correct email and password | Authentication | Critical | Automated |
 | TID-003 | Login User with incorrect email and password | Authentication | High | Not Started |
 | TID-004 | Logout User | Authentication | High | Not Started |
 | TID-005 | Register User with existing email | Authentication | High | Not Started |

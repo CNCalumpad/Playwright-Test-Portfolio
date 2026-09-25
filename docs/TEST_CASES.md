@@ -48,7 +48,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   7. Click 'Delete Account'
   8. Confirm the account-deleted message appears
 - **Expected Result:** User is logged in successfully, a login confirmation message is displayed, and the account is successfully deleted when requested.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-003: Login User with incorrect email and password
 

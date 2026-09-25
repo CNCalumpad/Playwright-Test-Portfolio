@@ -12,7 +12,8 @@ test("TID-001: Register User", async ({ page }) => {
 
   // Steps 1-4: Launch and confirm home page loads, check if the "New User Signup!" text is visible
   // "/login" is the domain for both login and registration, so we can use it to confirm the home page loads.
-  await page.goto("/login");
+  await page.goto("/");
+  await page.getByRole("link", { name: " Signup / Login" }).click();
   await expect(page.getByText("New User Signup!")).toBeVisible();
 
   // Step 5: Enter name + email in the signup form, click Signup
