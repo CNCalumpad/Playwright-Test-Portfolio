@@ -1,12 +1,12 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, master, feat/Register]
+    branches: [main, master, feat/login]
   pull_request:
-    branches: [main, master, feat/Register]
+    branches: [main, master, feat/login]
 
 permissions:
-  contents: write   # needed so this workflow can push the snapshot commit and the report
+  contents: write # needed so this workflow can push the snapshot commit and the report
 
 jobs:
   test:
@@ -24,11 +24,9 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         id: run-tests
-        continue-on-error: true   # keep going so the snapshot still reflects a failure
+        continue-on-error: true # keep going so the snapshot still reflects a failure
         env:
           BASE_URL: ${{ vars.BASE_URL }}
-          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
-          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
         run: npx playwright test
       - name: Update README snapshot and test case statuses
         if: always()
