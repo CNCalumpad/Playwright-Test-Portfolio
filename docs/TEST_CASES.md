@@ -65,7 +65,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   5. Enter an invalid email and password, then click 'Login'
   6. Confirm an error message indicating incorrect credentials appears
 - **Expected Result:** User remains on the home page, is not logged in, and an appropriate error message indicating incorrect email or password is displayed.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-004: Logout User
 
