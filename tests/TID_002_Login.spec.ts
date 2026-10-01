@@ -1,7 +1,8 @@
 import { test, expect } from "../fixtures/testUser";
 
 test("TID-002: Login User", async ({ page, testUser }) => {
-  await page.goto("/login");
+  await page.goto("/");
+  await page.getByRole("link", { name: " Signup / Login" }).click();
   await expect(page.getByText("Login to your account")).toBeVisible();
 
   await page

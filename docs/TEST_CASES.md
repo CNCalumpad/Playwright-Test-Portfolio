@@ -84,7 +84,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   7. Click 'Logout'
   8. Confirm the user is returned to the login page
 - **Expected Result:** User is logged out successfully, the Signup/Login button reappears on the home page, and a logout confirmation message is displayed.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-005: Register User with existing email
 

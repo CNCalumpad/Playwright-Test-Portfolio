@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 test("TID-003: Login User with Incorrect Credentials", async ({ page }) => {
-  await page.goto("/login");
+  await page.goto("/");
+  await page.getByRole("link", { name: " Signup / Login" }).click();
   await expect(page.getByText("Login to your account")).toBeVisible();
 
   await page
@@ -19,5 +20,7 @@ test("TID-003: Login User with Incorrect Credentials", async ({ page }) => {
     .filter({ hasText: "Login" })
     .getByRole("button", { name: "Login" })
     .click();
-  await expect(page.getByText("Your email or password is incorrect!")).toBeVisible();
+  await expect(
+    page.getByText("Your email or password is incorrect!"),
+  ).toBeVisible();
 });
