@@ -101,7 +101,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   5. Enter a name and an already-registered email, then click 'Signup'
   6. Confirm an error indicating the email already exists appears
 - **Expected Result:** Registration is blocked and an 'email already exists' error message is displayed.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Contact
 

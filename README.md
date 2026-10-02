@@ -1,7 +1,5 @@
 # Playwright-Test-Portfolio
 
-This is a Playwright Test portfolio I made to showcase my progress in upskilling in Automation Testing.
-
 ## Current Snapshot
 
 <!-- SNAPSHOT:START -->
@@ -22,7 +20,7 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 | TID-002 | Login User with correct email and password | Authentication | Critical | Automated |
 | TID-003 | Login User with incorrect email and password | Authentication | High | Automated |
 | TID-004 | Logout User | Authentication | High | Automated |
-| TID-005 | Register User with existing email | Authentication | High | Not Started |
+| TID-005 | Register User with existing email | Authentication | High | Automated |
 | TID-006 | Contact Us Form | Contact | Medium | Not Started |
 | TID-007 | Verify Test Cases Page | Navigation | Low | Not Started |
 | TID-008 | Verify All Products and product detail page | Products | High | Not Started |
