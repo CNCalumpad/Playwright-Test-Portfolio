@@ -21,7 +21,7 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 | TID-003 | Login User with incorrect email and password | Authentication | High | Automated |
 | TID-004 | Logout User | Authentication | High | Automated |
 | TID-005 | Register User with existing email | Authentication | High | Automated |
-| TID-006 | Contact Us Form | Contact | Medium | Not Started |
+| TID-006 | Contact Us Form | Contact | Medium | Automated |
 | TID-007 | Verify Test Cases Page | Navigation | Low | Not Started |
 | TID-008 | Verify All Products and product detail page | Products | High | Not Started |
 | TID-009 | Search Product | Products | High | Not Started |
