@@ -5,8 +5,8 @@
 <!-- SNAPSHOT:START -->
 Snapshot updated: **2026-10-06**.
 
-- **16 passed / 1 failed / 1 flaky / 0 skipped** out of **18** automated scenarios.
-- Last run duration: **121.9s**.
+- **18 passed / 0 failed / 0 flaky / 0 skipped** out of **18** automated scenarios.
+- Last run duration: **147.3s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 <!-- SNAPSHOT:END -->
 
