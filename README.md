@@ -5,8 +5,8 @@
 <!-- SNAPSHOT:START -->
 Snapshot updated: **2026-10-06**.
 
-- **18 passed / 0 failed / 0 flaky / 0 skipped** out of **18** automated scenarios.
-- Last run duration: **99.6s**.
+- **18 passed / 3 failed / 0 flaky / 0 skipped** out of **21** automated scenarios.
+- Last run duration: **157.0s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 <!-- SNAPSHOT:END -->
 
@@ -22,7 +22,7 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 | TID-004 | Logout User | Authentication | High | Automated |
 | TID-005 | Register User with existing email | Authentication | High | Automated |
 | TID-006 | Contact Us Form | Contact | Medium | Automated |
-| TID-007 | Verify Test Cases Page | Navigation | Low | Not Started |
+| TID-007 | Verify Test Cases Page | Navigation | Low | Automated |
 | TID-008 | Verify All Products and product detail page | Products | High | Not Started |
 | TID-009 | Search Product | Products | High | Not Started |
 | TID-010 | Verify Subscription in home page | Subscription | Medium | Not Started |

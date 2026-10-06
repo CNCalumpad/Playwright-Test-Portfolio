@@ -141,7 +141,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   3. Click 'Test Cases'
   4. Confirm the Test Cases page loads successfully
 - **Expected Result:** User is navigated to the Test Cases page and it loads correctly.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Products
 
