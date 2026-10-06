@@ -3,10 +3,10 @@
 ## Current Snapshot
 
 <!-- SNAPSHOT:START -->
-Snapshot updated: **2026-10-02**.
+Snapshot updated: **2026-10-06**.
 
-- **15 passed / 0 failed / 0 flaky / 0 skipped** out of **15** automated scenarios.
-- Last run duration: **64.8s**.
+- **0 passed / 18 failed / 0 flaky / 0 skipped** out of **18** automated scenarios.
+- Last run duration: **486.5s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 <!-- SNAPSHOT:END -->
 
