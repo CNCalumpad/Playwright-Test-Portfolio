@@ -28,6 +28,10 @@ jobs:
         env:
           BASE_URL: ${{ vars.BASE_URL }}
         run: npx playwright test --trace on
+      - name: Sync remote before updating the README snapshot and test case statuses
+        run: |
+          git fetch origin ${{ github.ref_name }}
+          git rebase origin/${{ github.ref_name }} || git rebase --abort
       - name: Update README snapshot and test case statuses
         if: always()
         run: node scripts/update-snapshot.js
