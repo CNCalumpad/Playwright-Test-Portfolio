@@ -123,7 +123,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   8. Confirm a success message appears
   9. Click 'Home' and confirm the home page loads
 - **Expected Result:** The Contact Us form submits successfully and a confirmation message is displayed.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Navigation
 
