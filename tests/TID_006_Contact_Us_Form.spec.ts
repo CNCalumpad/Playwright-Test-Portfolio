@@ -5,6 +5,9 @@ test("TID-006: Contact Us Form", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("link", { name: " Contact us" }).click();
 
+  // Verify that GET IN TOUCH is visible
+  await expect(page.getByText("GET IN TOUCH")).toBeVisible();
+
   // Check if fields are present and can be filled out
   await page.getByRole("textbox", { name: "Name" }).fill("test");
   await page

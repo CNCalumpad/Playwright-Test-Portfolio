@@ -117,6 +117,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   2. Confirm the home page loads successfully
   3. Click 'Contact Us'
   4. Confirm the contact form section is visible
+  5. Verify "GET IN TOUCH" is visible.
   5. Fill in name, email, subject, and message
   6. Attach a file
   7. Click 'Submit', then confirm the dialog
