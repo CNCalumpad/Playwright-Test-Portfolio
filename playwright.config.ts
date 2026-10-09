@@ -14,6 +14,8 @@ export default defineConfig({
     ["list"],
     ["html", { outputFolder: "playwright-report", open: "never" }],
     ["json", { outputFile: "test-results/results.json" }],
+    // Must come after "html": adds per-browser tabs to the generated report.
+    ["./reporters/browser-tabs-reporter.ts"],
   ],
 
   use: {
