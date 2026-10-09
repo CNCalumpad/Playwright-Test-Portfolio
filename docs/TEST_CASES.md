@@ -163,7 +163,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   8. Confirm that the user is redirected to the product detail page
   9. Verify that details are visible: product name, category, price, availability, condition, brand
 - **Expected Result:** The product list displays all available products, and the product detail page shows accurate name, price, category, and description information.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-009: Search Product
 
