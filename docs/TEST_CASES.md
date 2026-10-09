@@ -157,10 +157,11 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   2. Confirm the home page loads successfully
   3. Click 'Products'
   4. Confirm the All Products page loads successfully
-  5. Confirm the product list is visible
-  6. Click 'View Product' on the first item
-  7. Confirm the product detail page loads
-  8. Confirm product name, category, price, availability, condition, and brand are displayed
+  5. Confirm the user is navigated to ALL PRODUCTS page successfully
+  6. The products list is visible
+  7. Click the 'view product' button of the first product
+  8. Confirm that the user is redirected to the product detail page
+  9. Verify that details are visible: product name, category, price, availability, condition, brand
 - **Expected Result:** The product list displays all available products, and the product detail page shows accurate name, price, category, and description information.
 - **Status:** Not Started
 
