@@ -21,13 +21,19 @@ test("TID-007: Verify Test Cases Page", async ({ page }) => {
   });
 
   // Navigate to the home page and click the Test Cases button
-  await page.goto("/");
-  await expect(page.getByRole("button", { name: "Test Cases" })).toBeVisible();
-  await page.getByRole("button", { name: "Test Cases" }).click();
+  await test.step("Navigate to the home page and click the Test Cases button", async () => {
+    await page.goto("/");
+    await expect(
+      page.getByRole("button", { name: "Test Cases" }),
+    ).toBeVisible();
+    await page.getByRole("button", { name: "Test Cases" }).click();
+  });
 
   // Check that the URL is correct and the Test Cases heading is visible
-  await expect(page).toHaveURL(/.*test_cases/);
-  await expect(
-    page.getByRole("heading", { name: "Test Cases", exact: true }),
-  ).toBeVisible();
+  await test.step("Check that the URL is correct and the Test Cases heading is visible", async () => {
+    await expect(page).toHaveURL(/.*test_cases/);
+    await expect(
+      page.getByRole("heading", { name: "Test Cases", exact: true }),
+    ).toBeVisible();
+  });
 });
