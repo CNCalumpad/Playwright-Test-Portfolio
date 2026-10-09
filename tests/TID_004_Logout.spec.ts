@@ -1,6 +1,25 @@
 import { test, expect } from "../fixtures/testUser";
 
 test("TID-004: Logout User", async ({ page, testUser }) => {
+  // Intercept ads using a list of ad domains and abort the request
+  await page.route("**/*", async (route) => {
+    const url = route.request().url();
+
+    if (
+      url.includes("doubleclick.net") ||
+      url.includes("googlesyndication.com") ||
+      url.includes("adservice.google.com") ||
+      url.includes("ads.pubmatic.com") ||
+      url.includes("securepubads.g.doubleclick.net") ||
+      url.includes("pagead2.googlesyndication.com") ||
+      url.includes("ads.google.com")
+    ) {
+      await route.abort();
+    } else {
+      await route.continue();
+    }
+  });
+
   // Check if homepage loads and click on Signup / Login to confirm if redirection works,
   // Verify if the "Login to your account" text is visible, then proceed to login with the test user credentials.
   await page.goto("/");

@@ -8,6 +8,44 @@ test("TID-001: Register User", async ({ page }) => {
   const uniqueEmail = `qatest1234.${timestamp}@example.com`;
   const password = "Test@1234";
 
+  // Intercept ads using a list of ad domains and abort the request
+  await page.route("**/*", async (route) => {
+    const url = route.request().url();
+
+    if (
+      url.includes("doubleclick.net") ||
+      url.includes("googlesyndication.com") ||
+      url.includes("adservice.google.com") ||
+      url.includes("ads.pubmatic.com") ||
+      url.includes("securepubads.g.doubleclick.net") ||
+      url.includes("pagead2.googlesyndication.com") ||
+      url.includes("ads.google.com")
+    ) {
+      await route.abort();
+    } else {
+      await route.continue();
+    }
+  });
+
+  // Intercept ads using a list of ad domains and abort the request
+  await page.route("**/*", async (route) => {
+    const url = route.request().url();
+
+    if (
+      url.includes("doubleclick.net") ||
+      url.includes("googlesyndication.com") ||
+      url.includes("adservice.google.com") ||
+      url.includes("ads.pubmatic.com") ||
+      url.includes("securepubads.g.doubleclick.net") ||
+      url.includes("pagead2.googlesyndication.com") ||
+      url.includes("ads.google.com")
+    ) {
+      await route.abort();
+    } else {
+      await route.continue();
+    }
+  });
+
   // TEST STEPS
 
   // Steps 1-4: Launch and confirm home page loads, check if the "New User Signup!" text is visible
@@ -58,7 +96,9 @@ test("TID-001: Register User", async ({ page }) => {
 
   // Step 13: Delete Account
   // Check if Delete Account button is visible before clicking it
-  await expect(page.getByRole("link", { name: "Delete Account" })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Delete Account" }),
+  ).toBeVisible();
   await page.getByRole("link", { name: "Delete Account" }).click();
 
   // Step 14: Confirm account deleted, then Continue
