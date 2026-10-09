@@ -137,6 +137,11 @@ function buildInjectedMarkup(
   .bt-steps .bt-failed .bt-icon,
   .bt-steps .bt-failed .bt-title { color: var(--color-danger-fg, #cf222e); }
   .bt-steps .bt-duration { margin-left: auto; padding-left: 12px; }
+  /* The row is normally one line (path link, then "View Trace" etc.). With
+     steps, stack it: steps first, then the remaining links underneath. */
+  .test-file-details-row.bt-has-steps { flex-direction: column; align-items: stretch; }
+  .bt-has-steps .bt-steps { order: -1; }
+  .bt-has-steps .test-file-details-row-items { margin-top: 8px; }
 </style>
 <script>
 (function () {
@@ -285,6 +290,19 @@ function buildInjectedMarkup(
       var steps = match && stepsByTest[decodeURIComponent(match[1])];
       if (!steps || !steps.length) return;
 
+      pathLink.classList.add("bt-hidden");
+      details.classList.add("bt-has-steps");
+
+      // With the path link hidden, the row's link area only matters if it
+      // still holds something like "View Trace"; otherwise drop its space.
+      var items = details.querySelector(".test-file-details-row-items");
+      if (items) {
+        var hasVisibleItems = Array.prototype.some.call(items.children, function (child) {
+          return !child.classList.contains("bt-hidden");
+        });
+        items.classList.toggle("bt-hidden", !hasVisibleItems);
+      }
+
       var existing = details.querySelector(".bt-steps");
       if (existing && existing.dataset.testId === match[1]) return;
       if (existing) existing.remove(); // React reused this row for another test
@@ -292,7 +310,6 @@ function buildInjectedMarkup(
       var list = buildSteps(steps);
       list.dataset.testId = match[1];
       details.appendChild(list);
-      pathLink.classList.add("bt-hidden");
     });
   }
 
