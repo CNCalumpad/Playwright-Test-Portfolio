@@ -30,6 +30,7 @@ test("TID-008: Verify All Products and Product Details Page", async ({
     await page.getByRole("link", { name: " Products" }).click();
   });
 
+  // Check if URL is correct and "All Products" heading is visible
   await test.step("Check that the URL is correct and the All Products heading is visible", async () => {
     await expect(page).toHaveURL(/.*products/);
     await expect(
@@ -37,6 +38,7 @@ test("TID-008: Verify All Products and Product Details Page", async ({
     ).toBeVisible();
   });
 
+  // Click on 'View Product' of the first product and verify that the user is redirected to the details page
   await test.step("Click on 'View Product' of the first product and verify that the user is redirected to the details page", async () => {
     await expect(
       page.getByRole("link", { name: " View Product" }).first(),
@@ -48,12 +50,13 @@ test("TID-008: Verify All Products and Product Details Page", async ({
     ).toBeVisible();
   });
 
+  // Verify that the product details are visible on the product details page
   await test.step("Verify that the product details are visible on the product details page", async () => {
-    await expect(page.getByRole('heading', { name: 'Blue Top' })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Blue Top" })).toBeVisible();
     await expect(page.getByText("Category: Women > Tops")).toBeVisible();
     await expect(page.getByText("Rs.")).toBeVisible();
     await expect(page.getByText("Availability: In Stock")).toBeVisible();
-    await expect(page.getByText('Availability: In Stock')).toBeVisible();
+    await expect(page.getByText("Availability: In Stock")).toBeVisible();
     await expect(page.getByText("Brand: Polo")).toBeVisible();
   });
 });
