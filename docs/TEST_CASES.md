@@ -29,7 +29,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   13. Click 'Delete Account'
   14. Confirm the account-deleted message appears and click 'Continue'
 - **Expected Result:** User account is created successfully, a registration confirmation message is displayed, and the account is successfully deleted when requested.
-- **Status:** Started
+- **Status:** Automated
 
 ### TID-002: Login User with correct email and password
 
@@ -48,7 +48,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   7. Click 'Delete Account'
   8. Confirm the account-deleted message appears
 - **Expected Result:** User is logged in successfully, a login confirmation message is displayed, and the account is successfully deleted when requested.
-- **Status:** Started
+- **Status:** Automated
 
 ### TID-003: Login User with incorrect email and password
 
@@ -65,7 +65,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   5. Enter an invalid email and password, then click 'Login'
   6. Confirm an error message indicating incorrect credentials appears
 - **Expected Result:** User remains on the home page, is not logged in, and an appropriate error message indicating incorrect email or password is displayed.
-- **Status:** Started
+- **Status:** Automated
 
 ### TID-004: Logout User
 
@@ -84,7 +84,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   7. Click 'Logout'
   8. Confirm the user is returned to the login page
 - **Expected Result:** User is logged out successfully, the Signup/Login button reappears on the home page, and a logout confirmation message is displayed.
-- **Status:** Started
+- **Status:** Automated
 
 ### TID-005: Register User with existing email
 
@@ -101,7 +101,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   5. Enter a name and an already-registered email, then click 'Signup'
   6. Confirm an error indicating the email already exists appears
 - **Expected Result:** Registration is blocked and an 'email already exists' error message is displayed.
-- **Status:** Started
+- **Status:** Automated
 
 ## Contact
 
@@ -124,7 +124,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   8. Confirm a success message appears
   9. Click 'Home' and confirm the home page loads
 - **Expected Result:** The Contact Us form submits successfully and a confirmation message is displayed.
-- **Status:** Started
+- **Status:** Automated
 
 ## Navigation
 
@@ -141,7 +141,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   3. Click 'Test Cases'
   4. Confirm the Test Cases page loads successfully
 - **Expected Result:** User is navigated to the Test Cases page and it loads correctly.
-- **Status:** Started
+- **Status:** Automated
 
 ## Products
 
@@ -163,7 +163,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   8. Confirm that the user is redirected to the product detail page
   9. Verify that details are visible: product name, category, price, availability, condition, brand
 - **Expected Result:** The product list displays all available products, and the product detail page shows accurate name, price, category, and description information.
-- **Status:** Started
+- **Status:** Automated
 
 ### TID-009: Search Product
 
@@ -181,7 +181,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   6. Confirm the searched-products section is visible
   7. Confirm the returned products match the search term
 - **Expected Result:** Search results display only products relevant to the entered search term.
-- **Status:** Started
+- **Status:** Automated
 
 ## Subscription
 
@@ -200,7 +200,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   5. Enter an email address and click the subscribe arrow
   6. Confirm a subscription success message appears
 - **Expected Result:** The email is accepted and a subscription success message is displayed on the home page.
-- **Status:** Started
+- **Status:** Automated
 
 ### TID-011: Verify Subscription in Cart page
 
@@ -218,7 +218,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   6. Enter an email address and click the subscribe arrow
   7. Confirm a subscription success message appears
 - **Expected Result:** The email is accepted and a subscription success message is displayed on the Cart page.
-- **Status:** Started
+- **Status:** Automated
 
 ## Cart
 

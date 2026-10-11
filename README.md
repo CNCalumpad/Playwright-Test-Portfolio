@@ -6,9 +6,8 @@
 Snapshot updated: **2026-10-11**.
 
 - **11 of 26** planned Test IDs automated (42%).
-- **0 passed / 11 failed / 0 flaky / 0 skipped** out of **11** automated Test IDs, each run on Chromium, Firefox, and WebKit.
-- Failing: TID-001, TID-002, TID-003, TID-004, TID-005, TID-006, TID-007, TID-008, TID-009, TID-010, TID-011.
-- Last run duration: **1562.7s**.
+- **11 passed / 0 failed / 0 flaky / 0 skipped** out of **11** automated Test IDs, each run on Chromium, Firefox, and WebKit.
+- Last run duration: **85.2s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 <!-- SNAPSHOT:END -->
 
@@ -18,17 +17,17 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 
 | ID | Scenario | Module | Severity | Status |
 | --- | --- | --- | --- | --- |
-| TID-001 | Register User | Authentication | Critical | Started |
-| TID-002 | Login User with correct email and password | Authentication | Critical | Started |
-| TID-003 | Login User with incorrect email and password | Authentication | High | Started |
-| TID-004 | Logout User | Authentication | High | Started |
-| TID-005 | Register User with existing email | Authentication | High | Started |
-| TID-006 | Contact Us Form | Contact | Medium | Started |
-| TID-007 | Verify Test Cases Page | Navigation | Low | Started |
-| TID-008 | Verify All Products and product detail page | Products | High | Started |
-| TID-009 | Search Product | Products | High | Started |
-| TID-010 | Verify Subscription in home page | Subscription | Medium | Started |
-| TID-011 | Verify Subscription in Cart page | Subscription | Medium | Started |
+| TID-001 | Register User | Authentication | Critical | Automated |
+| TID-002 | Login User with correct email and password | Authentication | Critical | Automated |
+| TID-003 | Login User with incorrect email and password | Authentication | High | Automated |
+| TID-004 | Logout User | Authentication | High | Automated |
+| TID-005 | Register User with existing email | Authentication | High | Automated |
+| TID-006 | Contact Us Form | Contact | Medium | Automated |
+| TID-007 | Verify Test Cases Page | Navigation | Low | Automated |
+| TID-008 | Verify All Products and product detail page | Products | High | Automated |
+| TID-009 | Search Product | Products | High | Automated |
+| TID-010 | Verify Subscription in home page | Subscription | Medium | Automated |
+| TID-011 | Verify Subscription in Cart page | Subscription | Medium | Automated |
 | TID-012 | Add Products in Cart | Cart | Critical | Not Started |
 | TID-013 | Verify Product quantity in Cart | Cart | High | Not Started |
 | TID-014 | Place Order: Register while Checkout | Checkout | Critical | Not Started |
