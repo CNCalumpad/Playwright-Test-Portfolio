@@ -240,7 +240,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   8. Confirm both products appear in the cart
   9. Confirm prices, quantities, and total are correct
 - **Expected Result:** All selected products appear in the cart with correct prices, quantities, and total amount.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-013: Verify Product quantity in Cart
 
