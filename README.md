@@ -5,9 +5,9 @@
 <!-- SNAPSHOT:START -->
 Snapshot updated: **2026-10-11**.
 
-- **9 of 26** planned Test IDs automated (35%).
-- **9 passed / 0 failed / 0 flaky / 0 skipped** out of **9** automated Test IDs, each run on Chromium, Firefox, and WebKit.
-- Last run duration: **107.0s**.
+- **10 of 26** planned Test IDs automated (38%).
+- **10 passed / 0 failed / 0 flaky / 0 skipped** out of **10** automated Test IDs, each run on Chromium, Firefox, and WebKit.
+- Last run duration: **84.2s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 <!-- SNAPSHOT:END -->
 
@@ -26,7 +26,7 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 | TID-007 | Verify Test Cases Page | Navigation | Low | Automated |
 | TID-008 | Verify All Products and product detail page | Products | High | Automated |
 | TID-009 | Search Product | Products | High | Automated |
-| TID-010 | Verify Subscription in home page | Subscription | Medium | Not Started |
+| TID-010 | Verify Subscription in home page | Subscription | Medium | Automated |
 | TID-011 | Verify Subscription in Cart page | Subscription | Medium | Not Started |
 | TID-012 | Add Products in Cart | Cart | Critical | Not Started |
 | TID-013 | Verify Product quantity in Cart | Cart | High | Not Started |

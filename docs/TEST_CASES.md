@@ -200,7 +200,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   5. Enter an email address and click the subscribe arrow
   6. Confirm a subscription success message appears
 - **Expected Result:** The email is accepted and a subscription success message is displayed on the home page.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-011: Verify Subscription in Cart page
 
