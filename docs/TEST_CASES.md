@@ -181,7 +181,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   6. Confirm the searched-products section is visible
   7. Confirm the returned products match the search term
 - **Expected Result:** Search results display only products relevant to the entered search term.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Subscription
 
