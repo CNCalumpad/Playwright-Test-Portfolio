@@ -259,7 +259,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   7. Click 'View Cart'
   8. Confirm the product appears in the cart with the correct quantity
 - **Expected Result:** The quantity selected on the product page matches the quantity shown in the cart.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Checkout
 

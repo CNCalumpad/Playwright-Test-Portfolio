@@ -3,11 +3,11 @@
 ## Current Snapshot
 
 <!-- SNAPSHOT:START -->
-Snapshot updated: **2026-10-11**.
+Snapshot updated: **2026-10-12**.
 
-- **12 of 26** planned Test IDs automated (46%).
-- **12 passed / 0 failed / 0 flaky / 0 skipped** out of **12** automated Test IDs, each run on Chromium, Firefox, and WebKit.
-- Last run duration: **118.6s**.
+- **13 of 26** planned Test IDs automated (50%).
+- **13 passed / 0 failed / 0 flaky / 0 skipped** out of **13** automated Test IDs, each run on Chromium, Firefox, and WebKit.
+- Last run duration: **105.2s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 <!-- SNAPSHOT:END -->
 
@@ -29,7 +29,7 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 | TID-010 | Verify Subscription in home page | Subscription | Medium | Automated |
 | TID-011 | Verify Subscription in Cart page | Subscription | Medium | Automated |
 | TID-012 | Add Products in Cart | Cart | Critical | Automated |
-| TID-013 | Verify Product quantity in Cart | Cart | High | Not Started |
+| TID-013 | Verify Product quantity in Cart | Cart | High | Automated |
 | TID-014 | Place Order: Register while Checkout | Checkout | Critical | Not Started |
 | TID-015 | Place Order: Register before Checkout | Checkout | Critical | Not Started |
 | TID-016 | Place Order: Login before Checkout | Checkout | Critical | Not Started |
