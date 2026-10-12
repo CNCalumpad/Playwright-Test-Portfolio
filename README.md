@@ -7,7 +7,7 @@ Snapshot updated: **2026-10-12**.
 
 - **13 of 26** planned Test IDs automated (50%).
 - **13 passed / 0 failed / 0 flaky / 0 skipped** out of **13** automated Test IDs, each run on Chromium, Firefox, and WebKit.
-- Last run duration: **105.2s**.
+- Last run duration: **178.3s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 <!-- SNAPSHOT:END -->
 
