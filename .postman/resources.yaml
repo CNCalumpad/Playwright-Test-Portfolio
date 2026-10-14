@@ -1,0 +1,5 @@
+localResources:
+  environments:
+    - ../postman/automation-exercise.postman_environment.json
+workspace:
+  id: ''
