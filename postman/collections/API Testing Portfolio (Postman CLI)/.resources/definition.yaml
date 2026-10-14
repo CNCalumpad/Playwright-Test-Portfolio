@@ -1,1 +1,12 @@
 $kind: collection
+description: |-
+  API tests for the AutomationExercise API. Each request implements the test
+  case with the same ID in docs/API_TEST_CASES.md.
+
+  This API always responds with HTTP 200 and a `text/html` Content-Type, even
+  though the body is JSON. The real result is the `responseCode` field in the
+  body, so tests assert on that rather than on the HTTP status or header.
+variables:
+  - key: baseUrl
+    value: 'https://automationexercise.com/api'
+    description: Overridden by the AutomationExercise environment when run with -e.

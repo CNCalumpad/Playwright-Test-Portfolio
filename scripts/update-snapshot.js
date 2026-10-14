@@ -167,12 +167,22 @@ function getApiRun() {
     const line = lines[i];
 
     if (HTTP_METHOD_LINE.test(line)) {
-      // The request's name is on the closest non-empty line above.
+      // A saved request's name is on the closest non-empty line above.
       let j = i - 1;
       while (j >= 0 && !lines[j].trim()) j--;
-      const idMatch = j >= 0 && lines[j].match(/\b([A-Za-z]+-\d+):/);
+      const above = j >= 0 ? lines[j] : "";
+      const idMatch = above.match(/\b([A-Za-z]+-\d+):/);
       if (!idMatch) {
-        current = null; // a request without an ID isn't tracked
+        // Directly under another request's tests, this is a call made from
+        // that request's script (pm.sendRequest): it belongs to that request,
+        // so its failures still count. Otherwise it's a request without an
+        // ID, which isn't tracked.
+        const isScriptCall = /^\s+(Pass\s|\d+\.\s)/.test(above);
+        if (current && isScriptCall) {
+          if (/\[errored\]/.test(line)) current.failed = true;
+        } else {
+          current = null;
+        }
         continue;
       }
       const id = idMatch[1].toUpperCase();

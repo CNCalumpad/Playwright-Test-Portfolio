@@ -41,7 +41,7 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p test-results
-          postman collection run ${{ secrets.POSTMAN_COLLECTION_ID }} | tee test-results/postman-run.txt
+          postman collection run "postman/collections/API Testing Portfolio (Postman CLI)" | tee test-results/postman-run.txt
       - name: Sync remote before updating the README snapshot and test case statuses
         run: |
           git fetch origin ${{ github.ref_name }}
