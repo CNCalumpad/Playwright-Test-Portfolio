@@ -9,14 +9,15 @@ Snapshot updated: **2026-10-14**.
 
 - **13 of 26** planned Test IDs automated (50%).
 - **13 passed / 0 failed / 0 flaky / 0 skipped** out of **13** automated Test IDs, each run on Chromium, Firefox, and WebKit.
-- Last run duration: **118.0s**.
+- Last run duration: **175.9s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 
 ### API Tests (Postman)
 
-- **2 of 16** planned API Test IDs automated (13%).
-- **2 passed / 0 failed / 0 flaky / 0 skipped** out of **2** automated API Test IDs, run with Postman CLI.
-- Last run duration: **0.3s**.
+- **3 of 16** planned API Test IDs automated (19%).
+- **2 passed / 1 failed / 0 flaky / 0 skipped** out of **3** automated API Test IDs, run with Postman CLI.
+- Failing: API-003.
+- Last run duration: **0.8s**.
 - [View the full Postman report](https://cncalumpad.github.io/Playwright-Test-Portfolio/api/) for request-by-request results on any failure.
 <!-- SNAPSHOT:END -->
 
@@ -61,7 +62,7 @@ Full details (requests, test data, expected responses) live in [`docs/API_TEST_C
 | --- | --- | --- | --- | --- |
 | API-001 | Get All Products List | Products | High | Automated |
 | API-002 | POST To All Products List | Products | Medium | Automated |
-| API-003 | Get All Brands List | Brands | Medium | Not Started |
+| API-003 | Get All Brands List | Brands | Medium | Started |
 | API-004 | PUT To All Brands List | Brands | Medium | Not Started |
 | API-005 | POST To Search Product | Search | High | Not Started |
 | API-006 | POST To Search Product without search_product parameter | Search | Medium | Not Started |
