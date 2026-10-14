@@ -44,7 +44,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
   2. Confirm `responseCode` is `405`
   3. Confirm the error message
 - **Expected Result:** `responseCode` is `405` with message `This request method is not supported.`
-- **Status:** Not Started
+- **Status:** Started
 
 ## Brands
 
