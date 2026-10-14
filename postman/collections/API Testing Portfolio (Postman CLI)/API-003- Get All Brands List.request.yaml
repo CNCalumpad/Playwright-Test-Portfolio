@@ -23,7 +23,7 @@ scripts:
 
       pm.test("Each brand has id and name", function () {
           body.brands.forEach(function (brand) {
-              pm.expect(brand).to.include.all.keys("id", "name");
+              pm.expect(brand).to.include.all.keys("id", "brand");
           });
       });
     language: text/javascript
