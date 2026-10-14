@@ -1,0 +1,33 @@
+$kind: http-request
+name: "API-002: POST To All Products List"
+url: https://automationexercise.com/api/productsList
+method: POST
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Transport status is successful", function () {
+          pm.expect(pm.response.code).to.be.within(200, 299);
+      });
+
+      pm.test("Response is JSON", function () {
+          const contentType = pm.response.headers.get("Content-Type") || "";
+          pm.expect(contentType.toLowerCase()).to.include("application/json");
+          pm.expect(function () { pm.response.json(); }).not.to.throw();
+      });
+
+      const response = pm.response.json();
+
+      pm.test("Response code indicates method not allowed", function () {
+          pm.expect(Number(response.responseCode)).to.eql(405);
+      });
+
+      pm.test("Message indicates the request method is unsupported", function () {
+          pm.expect(response.message).to.be.a("string").and.not.empty;
+          pm.expect(response.message.toLowerCase()).to.match(/(not\s+supported|unsupported|not\s+allowed|method.*(support|allow))/);
+      });
+
+      pm.test("Response time is reasonable", function () {
+          pm.expect(pm.response.responseTime).to.be.below(5000);
+      });
+    language: text/javascript
+order: 2000

@@ -1,5 +1,8 @@
 localResources:
   environments:
-    - ../postman/automation-exercise.postman_environment.json
+    - ../postman/AutomationExercise.environment.yaml
 workspace:
-  id: ''
+  id: ddec2074-e52a-45bf-834f-007698327577
+cloudResources:
+  collections:
+    ../postman/collections/API Testing Portfolio (Postman CLI): 30508814-c42935b0-abd3-4589-b6a6-8e20b95180c3

@@ -1,0 +1,45 @@
+$kind: http-request
+name: "API-001: Get All Products List"
+url: https://automationexercise.com/api/productsList
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("HTTP status is 200", function () {
+          pm.response.to.have.status(200);
+      });
+
+      pm.test("Response is valid JSON", function () {
+          pm.response.to.have.jsonBody();
+      });
+
+      pm.test("responseCode equals 200", function () {
+          var jsonData = pm.response.json();
+          pm.expect(jsonData.responseCode).to.eql(200);
+      });
+
+      pm.test("Products list is returned", function () {
+          var jsonData = pm.response.json();
+          pm.expect(jsonData.products).to.be.an('array');
+          pm.expect(jsonData.products.length).to.be.above(0);
+      });
+
+      pm.test("Response time is below 2000 ms", function () {
+          pm.expect(pm.response.responseTime).to.be.below(2000);
+      });
+
+      pm.sendRequest({
+          url: pm.request.url.toString(),
+          method: "POST"
+      }, function (error, response) {
+          pm.test("POST negative case returns responseCode 405", function () {
+              pm.expect(error).to.equal(null);
+              pm.expect(response.json().responseCode).to.eql(405);
+          });
+
+          pm.test("POST negative case returns unsupported-method message", function () {
+              pm.expect(response.json().message).to.include("This request method is not supported.");
+          });
+      });
+    language: text/javascript
+order: 1000
