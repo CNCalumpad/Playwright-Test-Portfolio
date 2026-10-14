@@ -35,13 +35,24 @@ jobs:
       - name: Run Postman API tests
         id: api-tests
         continue-on-error: true # same as Playwright: let the snapshot/report steps still run
-        # Also saves the console output for scripts/update-snapshot.js (the
-        # CLI's report-file option needs a Postman Enterprise plan).
-        # pipefail keeps the step failing when a test fails, despite the tee.
+        # junit -> read by scripts/update-snapshot.js for the README snapshot.
+        # html  -> published next to the Playwright report on GitHub Pages
+        #          (/api/), and included in the uploaded artifact.
         run: |
-          set -o pipefail
-          mkdir -p test-results
-          postman collection run "postman/collections/API Testing Portfolio (Postman CLI)" | tee test-results/postman-run.txt
+          mkdir -p test-results playwright-report/api
+          postman collection run "postman/collections/API Testing Portfolio (Postman CLI)" \
+            -r cli,junit,html \
+            --reporter-junit-export test-results/postman-junit.xml \
+            --reporter-html-export playwright-report/api/index.html
+      - name: Give the Postman report a fixed light background
+        if: always()
+        # The report sets no page background, so browsers or viewers that
+        # paint the default one dark leave its dark text unreadable.
+        run: |
+          report=playwright-report/api/index.html
+          if [ -f "$report" ]; then
+            sed -i 's|<meta charset="UTF-8">|&<meta name="color-scheme" content="light"><style>html, body { background: #fff; }</style>|' "$report"
+          fi
       - name: Sync remote before updating the README snapshot and test case statuses
         run: |
           git fetch origin ${{ github.ref_name }}

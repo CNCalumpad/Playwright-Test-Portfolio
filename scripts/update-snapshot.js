@@ -2,8 +2,8 @@
 //   1. Rewrites the SNAPSHOT block in README.md with one section per suite:
 //        - UI tests:  test-results/results.json (Playwright's "json" reporter),
 //                     planned IDs from docs/TEST_CASES.md.
-//        - API tests: test-results/postman-run.txt (Postman CLI console
-//                     output), planned IDs from docs/API_TEST_CASES.md.
+//        - API tests: test-results/postman-junit.xml (Postman CLI's "junit"
+//                     reporter), planned IDs from docs/API_TEST_CASES.md.
 //      Counts are per Test ID, so an ID run on several browsers (or a request
 //      sent several times) counts once.
 //   2. Updates each test case's Status in both docs, matched by test titles /
@@ -20,7 +20,7 @@
 //
 // Usage:  node scripts/update-snapshot.js
 // Run this right after `npx playwright test` and the Postman collection run
-// (locally or in CI). A missing Postman output just leaves the API statuses
+// (locally or in CI). A missing Postman report just leaves the API statuses
 // alone and says so in the snapshot.
 
 const fs = require("fs");
@@ -28,7 +28,7 @@ const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
 const RESULTS_PATH = path.join(ROOT, "test-results", "results.json");
-const POSTMAN_OUTPUT_PATH = path.join(ROOT, "test-results", "postman-run.txt");
+const POSTMAN_JUNIT_PATH = path.join(ROOT, "test-results", "postman-junit.xml");
 const README_PATH = path.join(ROOT, "README.md");
 const TEST_CASES_PATH = path.join(ROOT, "docs", "TEST_CASES.md");
 const API_TEST_CASES_PATH = path.join(ROOT, "docs", "API_TEST_CASES.md");
@@ -137,79 +137,51 @@ function getUiBrowsers(results, runsById) {
 // API tests (Postman CLI)
 // ---------------------------------------------------------------------------
 
-// Parses the console output of `postman collection run` (the CLI's report
-// file option, --output, needs a Postman Enterprise plan). Each request
-// prints as:
+// Reads the JUnit report from `postman collection run -r junit`. Each request
+// is one <testsuite> named after it, with its pm.test() steps as testcases:
 //
-//   Root API-001: Get All Products List          <- header holding the name
+//   <testsuites name="..." tests="2" time="1.633">
+//     <testsuite name="API-001: Get All Products List" tests="4" failures="0" errors="0" ...>
 //
-//     POST https://... [200 OK, 890 B, 806 ms]   <- or "[errored]"
-//     Pass  responseCode equals 405              <- passed test
-//     1. fails on purpose                        <- failed test (numbered)
-//
-// and a summary table follows the last request. Returns a Map of
-// ID -> [{ failed: boolean }, ...] (one entry per request sent with that ID)
-// plus the total run duration in seconds, or null if there's no output.
-const HTTP_METHOD_LINE = /^\s+(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS)\s+\S/;
+// `failures` counts failed pm.test() steps, including ones run inside
+// pm.sendRequest callbacks; `errors` counts requests that couldn't complete
+// (e.g. an unreachable host). Returns a Map of
+// ID -> [{ failed: boolean }, ...] (one entry per request named with that ID)
+// plus the total run duration in seconds, or null if there's no report.
+function parseXmlAttributes(source) {
+  const attrs = {};
+  for (const [, key, value] of source.matchAll(/([\w:-]+)="([^"]*)"/g)) {
+    attrs[key] = value
+      .replace(/&quot;/g, '"')
+      .replace(/&apos;/g, "'")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&amp;/g, "&");
+  }
+  return attrs;
+}
 
 function getApiRun() {
-  if (!fs.existsSync(POSTMAN_OUTPUT_PATH)) return null;
-
-  const text = fs
-    .readFileSync(POSTMAN_OUTPUT_PATH, "utf-8")
-    .replace(/\x1b\[[0-9;]*m/g, ""); // strip terminal colors, if any
-  const lines = text.split(/\r?\n/);
+  if (!fs.existsSync(POSTMAN_JUNIT_PATH)) return null;
+  const xml = fs.readFileSync(POSTMAN_JUNIT_PATH, "utf-8");
 
   const runsById = new Map();
-  let current = null;
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-
-    if (HTTP_METHOD_LINE.test(line)) {
-      // A saved request's name is on the closest non-empty line above.
-      let j = i - 1;
-      while (j >= 0 && !lines[j].trim()) j--;
-      const above = j >= 0 ? lines[j] : "";
-      const idMatch = above.match(/\b([A-Za-z]+-\d+):/);
-      if (!idMatch) {
-        // Directly under another request's tests, this is a call made from
-        // that request's script (pm.sendRequest): it belongs to that request,
-        // so its failures still count. Otherwise it's a request without an
-        // ID, which isn't tracked.
-        const isScriptCall = /^\s+(Pass\s|\d+\.\s)/.test(above);
-        if (current && isScriptCall) {
-          if (/\[errored\]/.test(line)) current.failed = true;
-        } else {
-          current = null;
-        }
-        continue;
-      }
-      const id = idMatch[1].toUpperCase();
-      current = { failed: /\[errored\]/.test(line) };
-      if (!runsById.has(id)) runsById.set(id, []);
-      runsById.get(id).push(current);
-      continue;
-    }
-
-    // The summary table (and the failure details under it) starts with a
-    // line of dashes; nothing after it belongs to a request.
-    if (/^\s*-{10,}/.test(line)) {
-      current = null;
-      continue;
-    }
-    if (current && /^\s+\d+\.\s/.test(line)) current.failed = true;
+  // `\s` after "testsuite" skips the outer <testsuites> element.
+  for (const [, attrSource] of xml.matchAll(/<testsuite\s([^>]*?)\/?>/g)) {
+    const attrs = parseXmlAttributes(attrSource);
+    const idMatch = (attrs.name ?? "").match(/^([A-Za-z]+-\d+):/);
+    if (!idMatch) continue; // a request without an ID isn't tracked
+    const id = idMatch[1].toUpperCase();
+    const failed =
+      Number(attrs.failures ?? 0) > 0 || Number(attrs.errors ?? 0) > 0;
+    if (!runsById.has(id)) runsById.set(id, []);
+    runsById.get(id).push({ failed });
   }
 
-  const durationMatch = text.match(/total run duration:\s*([\d.]+)\s*(ms|s|m)\b/);
-  let durationSec = null;
-  if (durationMatch) {
-    const value = parseFloat(durationMatch[1]);
-    const unit = durationMatch[2];
-    durationSec = unit === "ms" ? value / 1000 : unit === "m" ? value * 60 : value;
-  }
+  const totalsMatch = xml.match(/<testsuites\s([^>]*)>/);
+  const time = totalsMatch ? parseFloat(parseXmlAttributes(totalsMatch[1]).time) : NaN;
 
-  return { runsById, durationSec };
+  return { runsById, durationSec: Number.isNaN(time) ? null : time };
 }
 
 // An ID passes only if every request carrying it passed. There's no flaky
@@ -434,9 +406,12 @@ function main() {
         label: "API Test IDs",
         ranWith: ", run with Postman CLI",
         durationSec: apiRun.durationSec,
+        extraLines: [
+          `- [View the full Postman report](https://cncalumpad.github.io/Playwright-Test-Portfolio/api/) for request-by-request results on any failure.`,
+        ],
       })
     : ["- No API test results from this run."];
-  if (!apiRun) console.log("README snapshot: no Postman output found.");
+  if (!apiRun) console.log("README snapshot: no Postman report found.");
 
   // UI and API IDs never collide, so one map covers both tables and docs.
   const statusUpdates = new Map([...uiStatusUpdates, ...apiStatusUpdates]);
