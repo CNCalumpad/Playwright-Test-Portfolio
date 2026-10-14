@@ -44,6 +44,29 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 | TID-025 | Verify Scroll Up using 'Arrow' button and Scroll Down functionality | Navigation | Low | Not Started |
 | TID-026 | Verify Scroll Up without 'Arrow' button and Scroll Down functionality | Navigation | Low | Not Started |
 
+## Automated API Scenarios
+
+Full details (requests, test data, expected responses) live in [`docs/API_TEST_CASES.md`](./docs/API_TEST_CASES.md). This table is a scannable summary of status only.
+
+| ID | Scenario | Module | Severity | Status |
+| --- | --- | --- | --- | --- |
+| API-001 | Get All Products List | Products | High | Not Started |
+| API-002 | POST To All Products List | Products | Medium | Not Started |
+| API-003 | Get All Brands List | Brands | Medium | Not Started |
+| API-004 | PUT To All Brands List | Brands | Medium | Not Started |
+| API-005 | POST To Search Product | Search | High | Not Started |
+| API-006 | POST To Search Product without search_product parameter | Search | Medium | Not Started |
+| API-007 | POST To Verify Login with valid details | Authentication | Critical | Not Started |
+| API-008 | POST To Verify Login without email parameter | Authentication | High | Not Started |
+| API-009 | DELETE To Verify Login | Authentication | Medium | Not Started |
+| API-010 | POST To Verify Login with invalid details | Authentication | High | Not Started |
+| API-011 | POST To Create/Register User Account | Account | Critical | Not Started |
+| API-012 | DELETE METHOD To Delete User Account | Account | Critical | Not Started |
+| API-013 | PUT METHOD To Update User Account | Account | High | Not Started |
+| API-014 | GET user account detail by email | Account | High | Not Started |
+| API-015 | POST To Create User Account with existing email | Account | High | Not Started |
+| API-016 | GET user account detail without email parameter | Account | Medium | Not Started |
+
 ## Getting Started
 
 ### Prerequisites

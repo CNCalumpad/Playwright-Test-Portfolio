@@ -35,7 +35,13 @@ jobs:
       - name: Run Postman API tests
         id: api-tests
         continue-on-error: true # same as Playwright: let the snapshot/report steps still run
-        run: postman collection run ${{ secrets.POSTMAN_COLLECTION_ID }}
+        # Also saves the console output for scripts/update-snapshot.js (the
+        # CLI's report-file option needs a Postman Enterprise plan).
+        # pipefail keeps the step failing when a test fails, despite the tee.
+        run: |
+          set -o pipefail
+          mkdir -p test-results
+          postman collection run ${{ secrets.POSTMAN_COLLECTION_ID }} | tee test-results/postman-run.txt
       - name: Sync remote before updating the README snapshot and test case statuses
         run: |
           git fetch origin ${{ github.ref_name }}
@@ -48,7 +54,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update test snapshot [skip ci]"
-          file_pattern: "README.md docs/TEST_CASES.md"
+          file_pattern: "README.md docs/TEST_CASES.md docs/API_TEST_CASES.md"
       - name: Deploy report to GitHub Pages
         if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
