@@ -1,4 +1,4 @@
 name: AutomationExercise
 values:
   - key: baseUrl
-    value: 'https://automationexercise.com/api'
+    value: 'https://automationexercise.com'

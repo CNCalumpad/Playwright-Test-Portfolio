@@ -1,6 +1,6 @@
 $kind: http-request
 name: 'API-002: POST To All Products List'
-url: '{{baseUrl}}/productsList'
+url: '{{baseUrl}}/api/productsList'
 method: POST
 scripts:
   - type: afterResponse

@@ -19,7 +19,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
 - **Related UI case:** TID-008
 - **Objective:** Verify that the products endpoint returns the full product list with the expected fields.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `GET {{baseUrl}}/productsList`
+- **Request:** `GET {{baseUrl}}/api/productsList`
 - **Test Data:** None
 - **Steps:**
   1. Send a `GET` request to `/productsList`
@@ -37,7 +37,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
 - **Related UI case:** None
 - **Objective:** Verify that the products endpoint rejects an unsupported request method.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `POST {{baseUrl}}/productsList`
+- **Request:** `POST {{baseUrl}}/api/productsList`
 - **Test Data:** None
 - **Steps:**
   1. Send a `POST` request to `/productsList`
@@ -55,7 +55,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
 - **Related UI case:** TID-019
 - **Objective:** Verify that the brands endpoint returns the full brand list with the expected fields.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `GET {{baseUrl}}/brandsList`
+- **Request:** `GET {{baseUrl}}/api/brandsList`
 - **Test Data:** None
 - **Steps:**
   1. Send a `GET` request to `/brandsList`
@@ -72,7 +72,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
 - **Related UI case:** None
 - **Objective:** Verify that the brands endpoint rejects an unsupported request method.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `PUT {{baseUrl}}/brandsList`
+- **Request:** `PUT {{baseUrl}}/api/brandsList`
 - **Test Data:** None
 - **Steps:**
   1. Send a `PUT` request to `/brandsList`
@@ -90,7 +90,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
 - **Related UI case:** TID-009
 - **Objective:** Verify that searching by a keyword returns only matching products.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `POST {{baseUrl}}/searchProduct`
+- **Request:** `POST {{baseUrl}}/api/searchProduct`
 - **Test Data:** `search_product` = `top` (other valid examples: `tshirt`, `jean`)
 - **Steps:**
   1. Send a `POST` request to `/searchProduct` with `search_product=top`
@@ -107,7 +107,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
 - **Related UI case:** None
 - **Objective:** Verify that a search request without the required parameter is rejected.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `POST {{baseUrl}}/searchProduct`
+- **Request:** `POST {{baseUrl}}/api/searchProduct`
 - **Test Data:** None (parameter intentionally omitted)
 - **Steps:**
   1. Send a `POST` request to `/searchProduct` with no body
@@ -125,7 +125,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
 - **Related UI case:** TID-002
 - **Objective:** Verify that a registered user's credentials are accepted.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible; a user account exists (created by API-011 in the same run).
-- **Request:** `POST {{baseUrl}}/verifyLogin`
+- **Request:** `POST {{baseUrl}}/api/verifyLogin`
 - **Test Data:** `email`, `password` of the account created in API-011
 - **Steps:**
   1. Send a `POST` request to `/verifyLogin` with the valid `email` and `password`
@@ -141,7 +141,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
 - **Related UI case:** None
 - **Objective:** Verify that a login request missing the email parameter is rejected.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `POST {{baseUrl}}/verifyLogin`
+- **Request:** `POST {{baseUrl}}/api/verifyLogin`
 - **Test Data:** `password` only (`email` intentionally omitted)
 - **Steps:**
   1. Send a `POST` request to `/verifyLogin` with only `password`
@@ -157,7 +157,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
 - **Related UI case:** None
 - **Objective:** Verify that the login endpoint rejects an unsupported request method.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `DELETE {{baseUrl}}/verifyLogin`
+- **Request:** `DELETE {{baseUrl}}/api/verifyLogin`
 - **Test Data:** None
 - **Steps:**
   1. Send a `DELETE` request to `/verifyLogin`
@@ -173,7 +173,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
 - **Related UI case:** TID-003
 - **Objective:** Verify that credentials for a non-existent user are rejected.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `POST {{baseUrl}}/verifyLogin`
+- **Request:** `POST {{baseUrl}}/api/verifyLogin`
 - **Test Data:** An unregistered `email` (e.g. `nobody.<timestamp>@example.com`) and any `password`
 - **Steps:**
   1. Send a `POST` request to `/verifyLogin` with the invalid `email` and `password`
@@ -193,7 +193,7 @@ These cases run in order as one lifecycle in the collection: **API-011 → API-0
 - **Related UI case:** TID-001
 - **Objective:** Verify that a new user account can be created through the API.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `POST {{baseUrl}}/createAccount`
+- **Request:** `POST {{baseUrl}}/api/createAccount`
 - **Test Data:** `name`, `email` (unique per run, e.g. `qatest.<timestamp>@example.com`), `password`, `title` (Mr/Mrs/Miss), `birth_date`, `birth_month`, `birth_year`, `firstname`, `lastname`, `company`, `address1`, `address2`, `country`, `zipcode`, `state`, `city`, `mobile_number`
 - **Steps:**
   1. Generate a unique email and save it, with the password, as collection variables
@@ -210,7 +210,7 @@ These cases run in order as one lifecycle in the collection: **API-011 → API-0
 - **Related UI case:** TID-001
 - **Objective:** Verify that an existing user account can be deleted and is no longer retrievable afterward.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible; the account from API-011 exists.
-- **Request:** `DELETE {{baseUrl}}/deleteAccount`
+- **Request:** `DELETE {{baseUrl}}/api/deleteAccount`
 - **Test Data:** `email`, `password` of the account created in API-011
 - **Steps:**
   1. Send a `DELETE` request to `/deleteAccount` with `email` and `password`
@@ -228,7 +228,7 @@ These cases run in order as one lifecycle in the collection: **API-011 → API-0
 - **Related UI case:** None
 - **Objective:** Verify that an existing user's details can be updated and that the change persists.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible; the account from API-011 exists.
-- **Request:** `PUT {{baseUrl}}/updateAccount`
+- **Request:** `PUT {{baseUrl}}/api/updateAccount`
 - **Test Data:** Same fields as API-011, with at least one value changed (e.g. a new `name`)
 - **Steps:**
   1. Send a `PUT` request to `/updateAccount` with the same `email` and `password` and a changed `name`
@@ -246,7 +246,7 @@ These cases run in order as one lifecycle in the collection: **API-011 → API-0
 - **Related UI case:** None
 - **Objective:** Verify that a user's account details can be retrieved by email and match the data used to create the account.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible; the account from API-011 exists.
-- **Request:** `GET {{baseUrl}}/getUserDetailByEmail?email={{email}}`
+- **Request:** `GET {{baseUrl}}/api/getUserDetailByEmail?email={{email}}`
 - **Test Data:** `email` of the account created in API-011
 - **Steps:**
   1. Send a `GET` request to `/getUserDetailByEmail` with the `email` query parameter
@@ -263,7 +263,7 @@ These cases run in order as one lifecycle in the collection: **API-011 → API-0
 - **Related UI case:** TID-005
 - **Objective:** Verify that registering with an email that is already in use is rejected.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible; the account from API-011 exists.
-- **Request:** `POST {{baseUrl}}/createAccount`
+- **Request:** `POST {{baseUrl}}/api/createAccount`
 - **Test Data:** The same account fields and `email` used in API-011
 - **Steps:**
   1. Send a `POST` request to `/createAccount` with the already-registered `email`
@@ -279,7 +279,7 @@ These cases run in order as one lifecycle in the collection: **API-011 → API-0
 - **Related UI case:** None
 - **Objective:** Verify that a user lookup request missing the email parameter is rejected.
 - **Preconditions:** Postman CLI installed; internet connection; API accessible.
-- **Request:** `GET {{baseUrl}}/getUserDetailByEmail`
+- **Request:** `GET {{baseUrl}}/api/getUserDetailByEmail`
 - **Test Data:** None (parameter intentionally omitted)
 - **Steps:**
   1. Send a `GET` request to `/getUserDetailByEmail` with no query parameters

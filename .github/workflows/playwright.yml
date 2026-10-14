@@ -38,9 +38,12 @@ jobs:
         # junit -> read by scripts/update-snapshot.js for the README snapshot.
         # html  -> published next to the Playwright report on GitHub Pages
         #          (/api/), and included in the uploaded artifact.
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
         run: |
           mkdir -p test-results playwright-report/api
           postman collection run "postman/collections/API Testing Portfolio (Postman CLI)" \
+            --env-var "baseUrl=${BASE_URL:-https://automationexercise.com}" \
             -r cli,junit,html \
             --reporter-junit-export test-results/postman-junit.xml \
             --reporter-html-export playwright-report/api/index.html

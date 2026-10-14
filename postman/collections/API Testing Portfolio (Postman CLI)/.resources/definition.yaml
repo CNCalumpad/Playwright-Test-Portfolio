@@ -8,5 +8,5 @@ description: |-
   body, so tests assert on that rather than on the HTTP status or header.
 variables:
   - key: baseUrl
-    value: 'https://automationexercise.com/api'
+    value: 'https://automationexercise.com'
     description: Overridden by the AutomationExercise environment when run with -e.

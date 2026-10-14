@@ -1,6 +1,6 @@
 $kind: http-request
 name: 'API-001: Get All Products List'
-url: '{{baseUrl}}/productsList'
+url: '{{baseUrl}}/api/productsList'
 method: GET
 scripts:
   - type: afterResponse
