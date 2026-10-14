@@ -28,7 +28,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
   4. Confirm `products` is a non-empty array
   5. Confirm each product has `id`, `name`, `price`, `brand`, and `category`
 - **Expected Result:** `responseCode` is `200` and a non-empty `products` list is returned, each item containing `id`, `name`, `price`, `brand`, and `category`.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### API-002: POST To All Products List
 

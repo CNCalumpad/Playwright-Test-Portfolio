@@ -5,10 +5,18 @@
 <!-- SNAPSHOT:START -->
 Snapshot updated: **2026-10-14**.
 
+### UI Tests (Playwright)
+
 - **13 of 26** planned Test IDs automated (50%).
 - **13 passed / 0 failed / 0 flaky / 0 skipped** out of **13** automated Test IDs, each run on Chromium, Firefox, and WebKit.
-- Last run duration: **158.3s**.
+- Last run duration: **137.2s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
+
+### API Tests (Postman)
+
+- **1 of 16** planned API Test IDs automated (6%).
+- **1 passed / 0 failed / 0 flaky / 0 skipped** out of **1** automated API Test IDs, run with Postman CLI.
+- Last run duration: **0.4s**.
 <!-- SNAPSHOT:END -->
 
 ## Automated Scenarios
@@ -50,7 +58,7 @@ Full details (requests, test data, expected responses) live in [`docs/API_TEST_C
 
 | ID | Scenario | Module | Severity | Status |
 | --- | --- | --- | --- | --- |
-| API-001 | Get All Products List | Products | High | Not Started |
+| API-001 | Get All Products List | Products | High | Automated |
 | API-002 | POST To All Products List | Products | Medium | Not Started |
 | API-003 | Get All Brands List | Brands | Medium | Not Started |
 | API-004 | PUT To All Brands List | Brands | Medium | Not Started |
