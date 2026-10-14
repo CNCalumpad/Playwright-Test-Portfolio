@@ -63,7 +63,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
   3. Confirm `brands` is a non-empty array
   4. Confirm each brand has `id` and `brand`
 - **Expected Result:** `responseCode` is `200` and a non-empty `brands` list is returned, each item containing `id` and `brand`.
-- **Status:** Started
+- **Status:** Automated
 
 ### API-004: PUT To All Brands List
 
