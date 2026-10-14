@@ -51,10 +51,13 @@ jobs:
         if: always()
         # The report sets no page background, so browsers or viewers that
         # paint the default one dark leave its dark text unreadable.
+        # It also labels requests that send no body as an "unsupported
+        # format"; requests that do send one (json, form, text) show it as-is.
         run: |
           report=playwright-report/api/index.html
           if [ -f "$report" ]; then
             sed -i 's|<meta charset="UTF-8">|&<meta name="color-scheme" content="light"><style>html, body { background: #fff; }</style>|' "$report"
+            sed -i 's|Unable to load the request body due to an unsupported format\.\\nOpen the request in Postman to view\.|No request body|g' "$report"
           fi
       - name: Sync remote before updating the README snapshot and test case statuses
         run: |
