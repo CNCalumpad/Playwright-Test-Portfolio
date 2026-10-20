@@ -2,25 +2,6 @@ import { test, expect } from "../fixtures";
 import { LoginPage } from "../pages/LoginPage";
 
 test("TID-002: Login User", async ({ page, testUser }) => {
-  // Intercept ads using a list of ad domains and abort the request
-  await page.route("**/*", async (route) => {
-    const url = route.request().url();
-
-    if (
-      url.includes("doubleclick.net") ||
-      url.includes("googlesyndication.com") ||
-      url.includes("adservice.google.com") ||
-      url.includes("ads.pubmatic.com") ||
-      url.includes("securepubads.g.doubleclick.net") ||
-      url.includes("pagead2.googlesyndication.com") ||
-      url.includes("ads.google.com")
-    ) {
-      await route.abort();
-    } else {
-      await route.continue();
-    }
-  });
-
   const loginPage = new LoginPage(page);
 
   // Go to the home page and click on the "Signup / Login" link

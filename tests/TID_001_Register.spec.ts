@@ -13,25 +13,6 @@ test("TID-001: Register User", async ({ page }) => {
   const uniqueEmail = `qatest1234.${timestamp}@example.com`;
   const password = "Test@1234";
 
-  // Intercept ads using a list of ad domains and abort the request
-  await page.route("**/*", async (route) => {
-    const url = route.request().url();
-
-    if (
-      url.includes("doubleclick.net") ||
-      url.includes("googlesyndication.com") ||
-      url.includes("adservice.google.com") ||
-      url.includes("ads.pubmatic.com") ||
-      url.includes("securepubads.g.doubleclick.net") ||
-      url.includes("pagead2.googlesyndication.com") ||
-      url.includes("ads.google.com")
-    ) {
-      await route.abort();
-    } else {
-      await route.continue();
-    }
-  });
-
   // Initialize the page objects
   const homePage = new HomePage(page);
   const loginPage = new LoginPage(page);
