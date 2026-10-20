@@ -1,4 +1,4 @@
-import { test, expect } from "../fixtures/testUser";
+import { test, expect } from "../fixtures";
 import { LoginPage } from "../pages/LoginPage";
 
 test("TID-002: Login User", async ({ page, testUser }) => {
