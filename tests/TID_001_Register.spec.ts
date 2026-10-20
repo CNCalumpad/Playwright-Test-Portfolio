@@ -1,4 +1,9 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../fixtures";
+import { LoginPage } from "../pages/LoginPage";
+import { RegisterPage } from "../pages/RegisterPage";
+import { HomePage } from "../pages/HomePage";
+import { AccountCreatedPage } from "../pages/AccountCreatedPage";
+import { AccountDeletedPage } from "../pages/AccountDeletedPage";
 
 test("TID-001: Register User", async ({ page }) => {
   // Make registration unique each run by using a timestamp.
@@ -8,103 +13,94 @@ test("TID-001: Register User", async ({ page }) => {
   const uniqueEmail = `qatest1234.${timestamp}@example.com`;
   const password = "Test@1234";
 
-  // Intercept ads using a list of ad domains and abort the request
-  await page.route("**/*", async (route) => {
-    const url = route.request().url();
-
-    if (
-      url.includes("doubleclick.net") ||
-      url.includes("googlesyndication.com") ||
-      url.includes("adservice.google.com") ||
-      url.includes("ads.pubmatic.com") ||
-      url.includes("securepubads.g.doubleclick.net") ||
-      url.includes("pagead2.googlesyndication.com") ||
-      url.includes("ads.google.com")
-    ) {
-      await route.abort();
-    } else {
-      await route.continue();
-    }
-  });
+  // Initialize the page objects
+  const homePage = new HomePage(page);
+  const loginPage = new LoginPage(page);
+  const registerPage = new RegisterPage(page);
+  const accountCreatedPage = new AccountCreatedPage(page);
+  const accountDeletedPage = new AccountDeletedPage(page);
 
   // TEST STEPS
 
   // Steps 1-4: Launch and confirm home page loads, check if the "New User Signup!" text is visible
   // "/login" is the domain for both login and registration, so we can use it to confirm the home page loads.
   await test.step("Launch browser and confirm home page loads", async () => {
-    await page.goto("/");
+    await homePage.goto();
   });
 
   await test.step("Check if the 'New User Signup!' text is visible", async () => {
-    await page.getByRole("link", { name: " Signup / Login" }).click();
-    await expect(page.getByText("New User Signup!")).toBeVisible();
+    await homePage.signupLoginLink.click();
+    await expect(loginPage.signupHeading).toBeVisible();
   });
 
   // Step 5: Enter name + email in the signup form, click Signup
   await test.step("Enter name + email in the signup form, click Signup", async () => {
-    await page.locator('[data-qa="signup-name"]').fill(name);
-    await page.locator('[data-qa="signup-email"]').fill(uniqueEmail);
-    await page.locator('[data-qa="signup-button"]').click();
+    await expect(loginPage.signupHeading).toBeVisible();
+    await expect(loginPage.signupNameInput).toBeVisible();
+    await expect(loginPage.signupEmailInput).toBeVisible();
+    await expect(loginPage.signupButton).toBeVisible();
+    await loginPage.signupNameInput.fill(name);
+    await loginPage.signupEmailInput.fill(uniqueEmail);
+    await loginPage.signupButton.click();
   });
 
   // Step 6: Confirm the account information form appeared
   await test.step("Confirm the account information form appeared", async () => {
-    await expect(page.getByText("ENTER ACCOUNT INFORMATION")).toBeVisible();
+    await expect(registerPage.accountInfoForm).toBeVisible();
+    await expect(registerPage.accountInfoHeading).toBeVisible();
   });
 
   // Step 7: Fill in account details
   await test.step("Fill in account details", async () => {
-    await page.locator("#id_gender1").check(); // Title: Mr
-    await page.locator("#password").fill(password);
-    await page.locator("#days").selectOption("10");
-    await page.locator("#months").selectOption("5");
-    await page.locator("#years").selectOption("1995");
+    await registerPage.titleMrRadio.check(); // Title: Mr.
+    await registerPage.passwordInput.fill(password); // Password
+    await registerPage.dayDropdown.selectOption("10");
+    await registerPage.monthDropdown.selectOption("5");
+    await registerPage.yearDropdown.selectOption("1995");
   });
 
   // Step 8: Newsletter + special offers checkboxes
   await test.step("Newsletter + special offers checkboxes", async () => {
-    await page.locator("#newsletter").check();
-    await page.locator("#optin").check();
+    await registerPage.newsletterCheckbox.check();
+    await registerPage.offersCheckbox.check();
   });
 
   // Step 9: Address details
   await test.step("Address details", async () => {
-    await page.locator("#first_name").fill("QA");
-    await page.locator("#last_name").fill("Test");
-    await page.locator("#company").fill("QA Company");
-    await page.locator("#address1").fill("123 Test Street");
-    await page.locator("#country").selectOption("United States");
-    await page.locator("#state").fill("NY");
-    await page.locator("#city").fill("New York");
-    await page.locator("#zipcode").fill("10001");
-    await page.locator("#mobile_number").fill("5555555555");
+    await registerPage.firstNameInput.fill("QA");
+    await registerPage.lastNameInput.fill("Test");
+    await registerPage.companyInput.fill("QA Company");
+    await registerPage.address1Input.fill("123 Test Street");
+    await registerPage.countryDropdown.selectOption("United States");
+    await registerPage.stateInput.fill("NY");
+    await registerPage.cityInput.fill("New York");
+    await registerPage.zipcodeInput.fill("10001");
+    await registerPage.mobileNumberInput.fill("5555555555");
   });
 
   // Step 10: Create Account
   await test.step("Click Create Account", async () => {
-    await page.locator('[data-qa="create-account"]').click();
+    await registerPage.createAccountButton.click();
   });
 
   // Step 11: Confirm account created, then Continue
   await test.step("Confirm account created, then Continue", async () => {
-    await expect(page.getByText("ACCOUNT CREATED!")).toBeVisible();
-    await page.locator('[data-qa="continue-button"]').click();
+    await expect(accountCreatedPage.accountCreatedHeading).toBeVisible();
+    await accountCreatedPage.continueButton.click();
   });
 
   // Step 12: Confirm logged in
   await test.step("Confirm logged in", async () => {
-    await expect(page.getByText(`Logged in as ${name}`)).toBeVisible();
+    await expect(homePage.loggedInAs(name)).toBeVisible();
   });
 
   // Step 13: Delete Account
   // Check if Delete Account button is visible before clicking it
   await test.step("Delete Account", async () => {
-    await expect(
-      page.getByRole("link", { name: "Delete Account" }),
-    ).toBeVisible();
-    await page.getByRole("link", { name: "Delete Account" }).click();
+    await expect(homePage.deleteAccountLink).toBeVisible();
+    await homePage.deleteAccountLink.click();
 
     // Step 14: Confirm account deleted, then Continue
-    await expect(page.getByText("ACCOUNT DELETED!")).toBeVisible();
+    await expect(accountDeletedPage.accountDeletedHeading).toBeVisible();
   });
 });

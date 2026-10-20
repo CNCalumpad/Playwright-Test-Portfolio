@@ -1,9 +1,9 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, master, feat/contactForm, feat/login, feat/Register]
+    branches: [main, master, feat/contactForm, feat/login, feat/Register, feat/POM]
   pull_request:
-    branches: [main, master, feat/contactForm, feat/login, feat/Register]
+    branches: [main, master, feat/contactForm, feat/login, feat/Register, feat/POM]
 
 permissions:
   contents: write # needed so this workflow can push the snapshot commit and the report
