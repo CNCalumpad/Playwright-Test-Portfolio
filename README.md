@@ -3,20 +3,20 @@
 ## Current Snapshot
 
 <!-- SNAPSHOT:START -->
-Snapshot updated: **2026-10-20**.
+Snapshot updated: **2026-10-26**.
 
 ### UI Tests (Playwright)
 
 - **13 of 26** planned Test IDs automated (50%).
-- **13 passed / 0 failed / 0 flaky / 0 skipped** out of **13** automated Test IDs, each run on Chromium, Firefox, and WebKit.
-- Last run duration: **123.4s**.
+- **12 passed / 0 failed / 1 flaky / 0 skipped** out of **13** automated Test IDs, each run on Chromium, Firefox, and WebKit.
+- Last run duration: **172.8s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 
 ### API Tests (Postman)
 
 - **3 of 16** planned API Test IDs automated (19%).
 - **3 passed / 0 failed / 0 flaky / 0 skipped** out of **3** automated API Test IDs, run with Postman CLI.
-- Last run duration: **0.5s**.
+- Last run duration: **0.7s**.
 - [View the full Postman report](https://cncalumpad.github.io/Playwright-Test-Portfolio/api/) for request-by-request results on any failure.
 <!-- SNAPSHOT:END -->
 
