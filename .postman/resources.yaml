@@ -6,3 +6,7 @@ workspace:
 cloudResources:
   collections:
     ../postman/collections/API Testing Portfolio (Postman CLI): 30508814-c42935b0-abd3-4589-b6a6-8e20b95180c3
+  environments:
+    ../postman/AutomationExercise.environment.yaml: 30508814-8012956c-1d4f-4af6-8d0e-31b157b9d4be
+  globals:
+    ../postman/globals/workspace.globals.yaml: 682c9c31-5808-4a18-82fd-1922eab27218
