@@ -5,12 +5,15 @@ export class HomePage {
   readonly page: Page;
 
   readonly signupLoginLink: Locator;
+  // Only rendered in the header once a user is logged in.
+  readonly logoutLink: Locator;
   readonly deleteAccountLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
 
     this.signupLoginLink = page.getByRole("link", { name: "Signup / Login" });
+    this.logoutLink = page.getByRole("link", { name: "Logout" });
     this.deleteAccountLink = page.getByRole("link", { name: "Delete Account" });
   }
 

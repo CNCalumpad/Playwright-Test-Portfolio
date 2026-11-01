@@ -9,7 +9,7 @@ test("TID-003: Login User with Incorrect Credentials", async ({ page }) => {
   // Test Steps
   // Go to the home page and click on the "Signup / Login" link
   await test.step("Go to the home page and click on the 'Signup / Login'", async () => {
-    await page.goto("/");
+    await homePage.goto();
     await expect(homePage.signupLoginLink).toBeVisible();
     await homePage.signupLoginLink.click();
   });
