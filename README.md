@@ -8,15 +8,16 @@ Snapshot updated: **2026-11-03**.
 ### UI Tests (Playwright)
 
 - **13 of 26** planned Test IDs automated (50%).
-- **6 passed / 0 failed / 7 flaky / 0 skipped** out of **13** automated Test IDs, each run on Chromium, Firefox, and WebKit.
-- Last run duration: **422.3s**.
+- **11 passed / 1 failed / 1 flaky / 0 skipped** out of **13** automated Test IDs, each run on Chromium, Firefox, and WebKit.
+- Failing: TID-006.
+- Last run duration: **562.4s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 
 ### API Tests (Postman)
 
 - **3 of 16** planned API Test IDs automated (19%).
 - **3 passed / 0 failed / 0 flaky / 0 skipped** out of **3** automated API Test IDs, run with Postman CLI.
-- Last run duration: **2.5s**.
+- Last run duration: **0.4s**.
 - [View the full Postman report](https://cncalumpad.github.io/Playwright-Test-Portfolio/api/) for request-by-request results on any failure.
 <!-- SNAPSHOT:END -->
 
@@ -31,7 +32,7 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 | TID-003 | Login User with incorrect email and password | Authentication | High | Automated |
 | TID-004 | Logout User | Authentication | High | Automated |
 | TID-005 | Register User with existing email | Authentication | High | Automated |
-| TID-006 | Contact Us Form | Contact | Medium | Automated |
+| TID-006 | Contact Us Form | Contact | Medium | Started |
 | TID-007 | Verify Test Cases Page | Navigation | Low | Automated |
 | TID-008 | Verify All Products and product detail page | Products | High | Automated |
 | TID-009 | Search Product | Products | High | Automated |
