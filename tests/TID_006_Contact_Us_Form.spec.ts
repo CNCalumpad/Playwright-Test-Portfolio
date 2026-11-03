@@ -1,59 +1,60 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../fixtures";
+import { HomePage } from "../pages/HomePage";
+import { ContactUsPage } from "../pages/ContactUsPage";
 
 test("TID-006: Contact Us Form", async ({ page }) => {
-  // Intercept ads using a list of ad domains and abort the request
-  await page.route("**/*", async (route) => {
-    const url = route.request().url();
+  const homePage = new HomePage(page);
+  const contactUsPage = new ContactUsPage(page);
 
-    if (
-      url.includes("doubleclick.net") ||
-      url.includes("googlesyndication.com") ||
-      url.includes("adservice.google.com") ||
-      url.includes("ads.pubmatic.com") ||
-      url.includes("securepubads.g.doubleclick.net") ||
-      url.includes("pagead2.googlesyndication.com") ||
-      url.includes("ads.google.com")
-    ) {
-      await route.abort();
-    } else {
-      await route.continue();
-    }
-  });
+  const testName = "Test Name";
+  const testEmail = "testemail123@example.com";
+  const testSubject = "Test Subject";
+  const testMessage = "This is a test message.";
 
   // Go to the page and check if the Contact Us form is present and clickable
   await test.step("Go to the page and check if the Contact Us form is present and clickable", async () => {
-    await page.goto("/");
-    await page.getByRole("link", { name: " Contact us" }).click();
+    await homePage.goto();
+    await expect(homePage.contactUsLink).toBeVisible();
+    await homePage.contactUsLink.click();
   });
 
   // Verify that GET IN TOUCH is visible
   await test.step("Verify that GET IN TOUCH is visible", async () => {
-    await expect(page.getByText("GET IN TOUCH")).toBeVisible();
+    await expect(contactUsPage.getInTouchHeading).toBeVisible();
   });
 
-  // Check if fields are present and can be filled out
-  await test.step("Check if fields are present and can be filled out", async () => {
-    await page.getByRole("textbox", { name: "Name" }).fill("test");
-    await page
-      .getByRole("textbox", { name: "Email", exact: true })
-      .fill("test@gmail.com");
-    await page.getByRole("textbox", { name: "Subject" }).fill("test");
-    await page.getByRole("textbox", { name: "Your Message Here" }).fill("test");
+  // Check if the fields are present and can be filled out
+  await test.step("Check if the fields are present and can be filled out", async () => {
+    await expect(contactUsPage.nameField).toBeVisible();
+    await expect(contactUsPage.emailField).toBeVisible();
+    await expect(contactUsPage.subjectField).toBeVisible();
+    await expect(contactUsPage.messageField).toBeVisible();
+
+    await contactUsPage.nameField.fill(testName);
+    await contactUsPage.emailField.fill(testEmail);
+    await contactUsPage.subjectField.fill(testSubject);
+    await contactUsPage.messageField.fill(testMessage);
   });
 
   // Try attaching a file
   await test.step("Try attaching a file", async () => {
-    await page
-      .getByRole("button", { name: "Choose File" })
-      .setInputFiles("./test_files/test.txt");
+    await expect(contactUsPage.chooseFileButton).toBeVisible();
+
+    await contactUsPage.chooseFileButton.setInputFiles("./test_files/test.txt");
   });
 
   // Get dialog message and dismiss it, then submit
   await test.step("Get dialog message and dismiss it, then submit", async () => {
-    page.once("dialog", (dialog) => {
-      console.log(`Dialog message: ${dialog.message()}`);
-      dialog.dismiss().catch(() => {});
-    });
-    await page.getByRole("button", { name: "Submit" }).click();
+    await contactUsPage.getDialogMessage();
+    await expect(contactUsPage.submitButton).toBeVisible();
+    await contactUsPage.submitButton.click();
+  });
+
+  // Verify that the success message is visible
+  await test.step("Verify that the success message is visible", async () => {
+    await expect(contactUsPage.dialogMessage).toBeVisible();
+    await expect(contactUsPage.dialogMessage).toHaveText(
+      "Success! Your details have been submitted successfully.",
+    );
   });
 });
