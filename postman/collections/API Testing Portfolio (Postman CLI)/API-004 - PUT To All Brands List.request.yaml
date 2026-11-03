@@ -18,7 +18,8 @@ scripts:
       });
 
       pm.test("responseMessage is 'This request method is not supported.'", function () {
-          pm.expect(body.responseMessage).to.eql("This request method is not supported.");
+          var jsonData = pm.response.json();
+          pm.expect(body.message).to.eql("This request method is not supported.");
       });
     language: text/javascript
 order: 1000
