@@ -6,6 +6,8 @@ export class HomePage {
 
   readonly signupLoginLink: Locator;
   readonly contactUsLink: Locator;
+  readonly testCasesLink: Locator;
+  readonly testCasesButton: Locator;
   // Only rendered in the header once a user is logged in.
   readonly logoutLink: Locator;
   readonly deleteAccountLink: Locator;
@@ -15,6 +17,8 @@ export class HomePage {
 
     this.signupLoginLink = page.getByRole("link", { name: "Signup / Login" });
     this.contactUsLink = page.getByRole("link", { name: " Contact us" });
+    this.testCasesLink = page.getByRole("link", { name: " Test Cases" });
+    this.testCasesButton = page.getByRole("button", { name: "Test Cases" });
     this.logoutLink = page.getByRole("link", { name: "Logout" });
     this.deleteAccountLink = page.getByRole("link", { name: "Delete Account" });
   }
