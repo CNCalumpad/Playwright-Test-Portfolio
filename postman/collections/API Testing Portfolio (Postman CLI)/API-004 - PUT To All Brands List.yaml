@@ -1,0 +1,24 @@
+$kind: http-request
+name: "API-004: PUT To All Brands List"
+url: "{{baseUrl}}/api/brandsList"
+method: PUT
+scripts:
+  - type: afterResponse
+    code: |-
+      // Steps follow API-004 in docs/API_TEST_CASES.md (step 1 is the request).
+
+      pm.test("Response body is valid JSON", function () {
+          pm.expect(function () { pm.response.json(); }).not.to.throw();
+      });
+
+      const body = pm.response.json();
+
+      pm.test("responseCode is 405", function () {
+          pm.expect(body.responseCode).to.eql(405);
+      });
+
+      pm.test("responseMessage is 'This request method is not supported.'", function () {
+          pm.expect(body.responseMessage).to.eql("This request method is not supported.");
+      });
+    language: text/javascript
+order: 1000
