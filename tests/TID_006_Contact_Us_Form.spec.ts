@@ -16,6 +16,7 @@ test("TID-006: Contact Us Form", async ({ page }) => {
     await homePage.goto();
     await expect(homePage.contactUsLink).toBeVisible();
     await homePage.contactUsLink.click();
+    await contactUsPage.waitForLoad();
   });
 
   // Verify that GET IN TOUCH is visible
@@ -43,17 +44,17 @@ test("TID-006: Contact Us Form", async ({ page }) => {
     await contactUsPage.chooseFileButton.setInputFiles("./test_files/test.txt");
   });
 
-  // Get dialog message and dismiss it, then submit
-  await test.step("Get dialog message and dismiss it, then submit", async () => {
-    await contactUsPage.getDialogMessage();
+  // Submit the form and accept the confirmation dialog
+  await test.step("Submit the form and accept the confirmation dialog", async () => {
     await expect(contactUsPage.submitButton).toBeVisible();
-    await contactUsPage.submitButton.click();
+    const dialogMessage = await contactUsPage.submitAndAcceptDialog();
+    expect(dialogMessage).toBe("Press OK to proceed!");
   });
 
   // Verify that the success message is visible
   await test.step("Verify that the success message is visible", async () => {
-    await expect(contactUsPage.dialogMessage).toBeVisible();
-    await expect(contactUsPage.dialogMessage).toHaveText(
+    await expect(contactUsPage.successMessage).toBeVisible();
+    await expect(contactUsPage.successMessage).toHaveText(
       "Success! Your details have been submitted successfully.",
     );
   });
