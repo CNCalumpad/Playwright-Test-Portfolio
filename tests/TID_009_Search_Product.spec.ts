@@ -1,50 +1,33 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../fixtures";
+import { HomePage } from "../pages/HomePage";
+import { ProductsPage } from "../pages/Productspage";
 
 test("TID-009: Search Product", async ({ page }) => {
-  // Intercept ads using a list of ad domains and abort the request
-  await page.route("**/*", async (route) => {
-    const url = route.request().url();
-
-    if (
-      url.includes("doubleclick.net") ||
-      url.includes("googlesyndication.com") ||
-      url.includes("adservice.google.com") ||
-      url.includes("ads.pubmatic.com") ||
-      url.includes("securepubads.g.doubleclick.net") ||
-      url.includes("pagead2.googlesyndication.com") ||
-      url.includes("ads.google.com")
-    ) {
-      await route.abort();
-    } else {
-      await route.continue();
-    }
-  });
+  const homePage = new HomePage(page);
+  const productsPage = new ProductsPage(page);
 
   // Navigate to the home page and search for a product
-  await test.step("Navigate to the home page and click the Products button", async () => {
-    await page.goto("/");
+  await test.step("Navigate to the home page and check if the URL is correct", async () => {
+    await homePage.goto();
     await expect(page).toHaveURL(/.*$/);
   });
 
   await test.step("Click the Products button", async () => {
-    await expect(page.getByRole("link", { name: " Products" })).toBeVisible();
-    await page.getByRole("link", { name: " Products" }).click();
+    await expect(homePage.productsLink).toBeVisible();
+    await homePage.productsLink.click();
   });
 
   await test.step("Enter the product name in the search input and click the search button", async () => {
-    await expect(page.getByPlaceholder("Search Product")).toBeVisible();
-    await page.getByPlaceholder("Search Product").fill("Blue Top");
-    await expect(page.locator("#submit_search")).toBeVisible();
-    await page.locator("#submit_search").click();
+    await expect(productsPage.searchInput).toBeVisible();
+    await expect(productsPage.searchButton).toBeVisible();
+    await expect(productsPage.allProductsHeading).toBeVisible();
+    await productsPage.searchInput.fill("Blue Top");
+    await productsPage.searchButton.click();
   });
 
   // Verify that the search results are displayed
   await test.step("Verify that the search results are displayed", async () => {
-    await expect(
-      page.getByRole("heading", { name: "Searched Products" }),
-    ).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: " View Product" }).first(),
-    ).toBeVisible();
+    await expect(productsPage.searchedProductsHeading).toBeVisible();
+    await expect(productsPage.viewProductLinkFor("Blue Top")).toBeVisible();
   });
 });
