@@ -17,6 +17,14 @@ export class ProductDetailsPage {
   // Inside the "Added!" popup shown after clicking "Add to cart"
   readonly viewCartLink: Locator;
 
+  // The "Write Your Review" form below the product
+  readonly writeYourReviewHeading: Locator;
+  readonly reviewNameInput: Locator;
+  readonly reviewEmailInput: Locator;
+  readonly reviewTextInput: Locator;
+  readonly submitReviewButton: Locator;
+  readonly reviewSuccessMessage: Locator;
+
   constructor(page: Page) {
     this.page = page;
 
@@ -36,6 +44,14 @@ export class ProductDetailsPage {
     this.quantityInput = page.getByRole("spinbutton");
     this.addToCartButton = page.getByRole("button", { name: "Add to cart" });
     this.viewCartLink = page.getByRole("link", { name: "View Cart" });
+
+    this.writeYourReviewHeading = page.getByRole("link", { name: "Write Your Review" });
+    const reviewForm = page.locator("#review-form");
+    this.reviewNameInput = reviewForm.getByPlaceholder("Your Name");
+    this.reviewEmailInput = reviewForm.getByPlaceholder("Email Address");
+    this.reviewTextInput = reviewForm.getByPlaceholder("Add Review Here!");
+    this.submitReviewButton = reviewForm.getByRole("button", { name: "Submit" });
+    this.reviewSuccessMessage = reviewForm.getByText("Thank you for your review.");
   }
 
   // "Add to cart" is wired up by a script near the bottom of the page. Until
@@ -45,6 +61,13 @@ export class ProductDetailsPage {
     await this.page.waitForURL(/.*\/product_details\/[0-9]+$/, {
       waitUntil: "load",
     });
+  }
+
+  async submitReview(name: string, email: string, review: string) {
+    await this.reviewNameInput.fill(name);
+    await this.reviewEmailInput.fill(email);
+    await this.reviewTextInput.fill(review);
+    await this.submitReviewButton.click();
   }
 
   async addToCart(quantity: number) {

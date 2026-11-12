@@ -1,4 +1,5 @@
 import { type Locator, type Page } from "@playwright/test";
+import { type NewUser } from "../utils/testData";
 
 // This is for the /signup route for filling out the registration form
 
@@ -51,5 +52,27 @@ export class RegisterPage {
     this.zipcodeInput = page.locator('[data-qa="zipcode"]');
     this.mobileNumberInput = page.locator('[data-qa="mobile_number"]');
     this.createAccountButton = page.locator('[data-qa="create-account"]');
+  }
+
+  /** Fills the whole "Enter Account Information" form and clicks "Create Account". */
+  async createAccount(user: NewUser) {
+    await this.titleMrRadio.check();
+    await this.passwordInput.fill(user.password);
+    await this.dayDropdown.selectOption(user.birthDay);
+    await this.monthDropdown.selectOption(user.birthMonth);
+    await this.yearDropdown.selectOption(user.birthYear);
+    await this.newsletterCheckbox.check();
+    await this.offersCheckbox.check();
+    await this.firstNameInput.fill(user.firstName);
+    await this.lastNameInput.fill(user.lastName);
+    await this.companyInput.fill(user.company);
+    await this.address1Input.fill(user.address1);
+    await this.address2Input.fill(user.address2);
+    await this.countryDropdown.selectOption(user.country);
+    await this.stateInput.fill(user.state);
+    await this.cityInput.fill(user.city);
+    await this.zipcodeInput.fill(user.zipcode);
+    await this.mobileNumberInput.fill(user.mobileNumber);
+    await this.createAccountButton.click();
   }
 }

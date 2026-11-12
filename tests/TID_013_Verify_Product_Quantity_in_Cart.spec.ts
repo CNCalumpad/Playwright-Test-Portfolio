@@ -1,6 +1,6 @@
 import { test, expect } from "../fixtures";
 import { HomePage } from "../pages/HomePage";
-import { ProductsPage } from "../pages/Productspage";
+import { ProductsPage } from "../pages/ProductsPage";
 import { ProductDetailsPage } from "../pages/ProductDetailsPage";
 import { CartPage } from "../pages/CartPage";
 

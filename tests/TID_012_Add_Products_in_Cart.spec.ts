@@ -1,6 +1,6 @@
 import { test, expect } from "../fixtures";
 import { HomePage } from "../pages/HomePage";
-import { ProductsPage } from "../pages/Productspage";
+import { ProductsPage } from "../pages/ProductsPage";
 import { CartPage } from "../pages/CartPage";
 
 test("TID-012: Add Products in Cart", async ({ page }) => {

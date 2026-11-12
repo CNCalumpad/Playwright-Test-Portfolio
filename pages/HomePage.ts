@@ -15,6 +15,17 @@ export class HomePage {
   readonly deleteAccountLink: Locator;
 
   readonly heroHeading: Locator;
+  readonly heroText: Locator;
+
+  // Fixed arrow in the bottom-right corner, shown once the page is scrolled down
+  readonly scrollUpButton: Locator;
+
+  readonly recommendedItemsHeading: Locator;
+  // Only the cards on the carousel's current slide are visible and clickable
+  readonly visibleRecommendedItems: Locator;
+
+  // The "Added!" popup shown after clicking "Add to cart"
+  readonly cartModalViewCartLink: Locator;
 
   // The Subscription box lives in the footer, so it's on every page (Home, Cart...).
   readonly subscriptionHeading: Locator;
@@ -25,8 +36,30 @@ export class HomePage {
   constructor(page: Page) {
     this.page = page;
 
-    this.heroHeading = page.getByRole("heading", { name: "AutomationExercise" });
-    this.cartLink = page.getByRole("link", { name: " Cart" });
+    // Every carousel slide repeats the hero heading and text. Only the current
+    // slide's copy is visible, except mid-transition when two can be, so take
+    // the first visible one.
+    this.heroHeading = page
+      .getByRole("heading", { name: "AutomationExercise" })
+      .filter({ visible: true })
+      .first();
+    this.heroText = page
+      .getByRole("heading", { name: "Full-Fledged practice website for Automation Engineers" })
+      .filter({ visible: true })
+      .first();
+
+    this.scrollUpButton = page.locator("#scrollUp");
+
+    this.recommendedItemsHeading = page.getByRole("heading", { name: "recommended items" });
+    this.visibleRecommendedItems = page
+      .locator("#recommended-item-carousel .item.active .productinfo");
+
+    this.cartModalViewCartLink = page
+      .locator("#cartModal")
+      .getByRole("link", { name: "View Cart" });
+    // Scoped to the header nav: on its own, a name match for "Cart" also hits
+    // the "Added!" popup's "View Cart" link.
+    this.cartLink = page.locator(".shop-menu").getByRole("link", { name: "Cart" });
 
     this.subscriptionHeading = page.getByRole("heading", { name: "Subscription" });
     this.subscriptionEmailInput = page.getByPlaceholder("Your email address");
@@ -50,6 +83,37 @@ export class HomePage {
 
   loggedInAs(name: string): Locator {
     return this.page.getByText(`Logged in as ${name}`);
+  }
+
+  async scrollToBottom() {
+    await this.page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  }
+
+  /**
+   * Scrolls back to the top with the keyboard's Home key, like a user would,
+   * instead of the arrow button. (The mouse wheel works too, but browsers cap
+   * how far each wheel movement scrolls, so it's slow and unreliable on a
+   * page this long, especially in Firefox.)
+   */
+  async scrollToTopManually() {
+    await this.page.keyboard.press("Home");
+  }
+
+  /**
+   * Clicks "Add to cart" on a recommended item on the carousel's current
+   * slide and returns that product's name. The carousel rotates on its own,
+   * so the click targets that product's id rather than "the nth visible
+   * card", which could be a different product by the time it's clicked.
+   */
+  async addRecommendedItemToCart(index: number): Promise<string> {
+    const item = this.visibleRecommendedItems.nth(index);
+    const name = (await item.locator("p").innerText()).trim();
+    const productId = await item.locator(".add-to-cart").getAttribute("data-product-id");
+    await this.page
+      .locator(`#recommended-item-carousel .add-to-cart[data-product-id="${productId}"]`)
+      .filter({ visible: true })
+      .click();
+    return name;
   }
 
   async subscribe(email: string) {
