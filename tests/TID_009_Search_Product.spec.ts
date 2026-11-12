@@ -1,6 +1,6 @@
 import { test, expect } from "../fixtures";
 import { HomePage } from "../pages/HomePage";
-import { ProductsPage } from "../pages/Productspage";
+import { ProductsPage } from "../pages/ProductsPage";
 
 test("TID-009: Search Product", async ({ page }) => {
   const homePage = new HomePage(page);

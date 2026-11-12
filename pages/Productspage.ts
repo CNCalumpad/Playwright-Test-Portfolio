@@ -19,6 +19,13 @@ export class ProductsPage {
   readonly brandsHeading: Locator;
   readonly brandProducts: Locator;
 
+  readonly productCards: Locator;
+
+  // The "Added!" popup shown after clicking "Add to cart"
+  readonly cartModal: Locator;
+  readonly cartModalHeading: Locator;
+  readonly continueShoppingButton: Locator;
+
   constructor(page: Page) {
     this.page = page;
 
@@ -40,6 +47,26 @@ export class ProductsPage {
 
     this.brandsHeading = page.getByRole("heading", { name: "Brands" });
     this.brandProducts = page.locator(".brand-products");
+
+    this.productCards = page.locator(".product-image-wrapper");
+
+    this.cartModal = page.locator("#cartModal");
+    this.cartModalHeading = this.cartModal.getByRole("heading", {
+      name: "Added!",
+    });
+    this.continueShoppingButton = this.cartModal.getByRole("button", {
+      name: "Continue Shopping",
+    });
+  }
+
+  /**
+   * Hovers the product card at the given zero-based index and clicks its "Add to cart".
+   * Each card has two "Add to cart" buttons; this targets the one in the hover overlay.
+   */
+  async addToCartAt(index: number) {
+    const product = this.productCards.nth(index);
+    await product.hover();
+    await product.locator(".product-overlay .add-to-cart").click();
   }
 
   /**
