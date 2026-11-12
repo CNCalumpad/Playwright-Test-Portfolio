@@ -9,14 +9,14 @@ Snapshot updated: **2026-11-12**.
 
 - **0 of 26** planned Test IDs automated (0%).
 - **0 passed / 0 failed / 0 flaky / 0 skipped** out of **0** automated Test IDs.
-- Last run duration: **0.2s**.
+- Last run duration: **0.3s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 
 ### API Tests (Postman)
 
 - **4 of 16** planned API Test IDs automated (25%).
 - **4 passed / 0 failed / 0 flaky / 0 skipped** out of **4** automated API Test IDs, run with Postman CLI.
-- Last run duration: **2.1s**.
+- Last run duration: **0.8s**.
 - [View the full Postman report](https://cncalumpad.github.io/Playwright-Test-Portfolio/api/) for request-by-request results on any failure.
 <!-- SNAPSHOT:END -->
 
