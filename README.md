@@ -7,16 +7,17 @@ Snapshot updated: **2026-11-12**.
 
 ### UI Tests (Playwright)
 
-- **0 of 26** planned Test IDs automated (0%).
-- **0 passed / 0 failed / 0 flaky / 0 skipped** out of **0** automated Test IDs.
-- Last run duration: **0.3s**.
+- **26 of 26** planned Test IDs automated (100%).
+- **25 passed / 1 failed / 0 flaky / 0 skipped** out of **26** automated Test IDs, each run on Chromium, Firefox, and WebKit.
+- Failing: TID-024.
+- Last run duration: **779.5s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 
 ### API Tests (Postman)
 
 - **4 of 16** planned API Test IDs automated (25%).
 - **4 passed / 0 failed / 0 flaky / 0 skipped** out of **4** automated API Test IDs, run with Postman CLI.
-- Last run duration: **0.8s**.
+- Last run duration: **0.9s**.
 - [View the full Postman report](https://cncalumpad.github.io/Playwright-Test-Portfolio/api/) for request-by-request results on any failure.
 <!-- SNAPSHOT:END -->
 
@@ -39,19 +40,19 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 | TID-011 | Verify Subscription in Cart page | Subscription | Medium | Automated |
 | TID-012 | Add Products in Cart | Cart | Critical | Automated |
 | TID-013 | Verify Product quantity in Cart | Cart | High | Automated |
-| TID-014 | Place Order: Register while Checkout | Checkout | Critical | Not Started |
-| TID-015 | Place Order: Register before Checkout | Checkout | Critical | Not Started |
-| TID-016 | Place Order: Login before Checkout | Checkout | Critical | Not Started |
-| TID-017 | Remove Products From Cart | Cart | High | Not Started |
-| TID-018 | View Category Products | Products | Medium | Not Started |
-| TID-019 | View & Cart Brand Products | Products | Medium | Not Started |
-| TID-020 | Search Products and Verify Cart After Login | Cart | Critical | Not Started |
-| TID-021 | Add review on product | Products | Medium | Not Started |
-| TID-022 | Add to cart from Recommended items | Cart | Medium | Not Started |
-| TID-023 | Verify address details in checkout page | Checkout | Critical | Not Started |
-| TID-024 | Download Invoice after purchase order | Checkout | High | Not Started |
-| TID-025 | Verify Scroll Up using 'Arrow' button and Scroll Down functionality | Navigation | Low | Not Started |
-| TID-026 | Verify Scroll Up without 'Arrow' button and Scroll Down functionality | Navigation | Low | Not Started |
+| TID-014 | Place Order: Register while Checkout | Checkout | Critical | Automated |
+| TID-015 | Place Order: Register before Checkout | Checkout | Critical | Automated |
+| TID-016 | Place Order: Login before Checkout | Checkout | Critical | Automated |
+| TID-017 | Remove Products From Cart | Cart | High | Automated |
+| TID-018 | View Category Products | Products | Medium | Automated |
+| TID-019 | View & Cart Brand Products | Products | Medium | Automated |
+| TID-020 | Search Products and Verify Cart After Login | Cart | Critical | Automated |
+| TID-021 | Add review on product | Products | Medium | Automated |
+| TID-022 | Add to cart from Recommended items | Cart | Medium | Automated |
+| TID-023 | Verify address details in checkout page | Checkout | Critical | Automated |
+| TID-024 | Download Invoice after purchase order | Checkout | High | Started |
+| TID-025 | Verify Scroll Up using 'Arrow' button and Scroll Down functionality | Navigation | Low | Automated |
+| TID-026 | Verify Scroll Up without 'Arrow' button and Scroll Down functionality | Navigation | Low | Automated |
 
 ## Automated API Scenarios
 
