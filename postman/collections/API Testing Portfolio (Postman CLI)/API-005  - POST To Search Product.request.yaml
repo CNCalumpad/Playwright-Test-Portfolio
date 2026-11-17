@@ -1,0 +1,39 @@
+$kind: http-request
+name: "API-005: POST To Search Product"
+url: "{{baseUrl}}/api/searchProduct"
+method: POST
+body:
+  type: urlencoded
+  content:
+    - key: search_product
+      value: top
+scripts:
+  - type: afterResponse
+    code: |-
+      // Steps follow API-005 in docs/API_TEST_CASES.md (step 1 is the request).
+
+      pm.test("Response body is valid JSON", function () {
+          pm.expect(function () { pm.response.json(); }).not.to.throw();
+      });
+
+      const body = pm.response.json();
+
+      pm.test("responseCode is 200", function () {
+          pm.expect(body.responseCode).to.eql(200);
+      });
+
+      pm.test("Search results are not empty", function () {
+          pm.expect(body.products).to.be.an("array").that.is.not.empty;
+      });
+
+      pm.test("Every product matches the search term in its name or category", function () {
+          const term = "top";
+          body.products.forEach(function (product) {
+              const name = product.name.toLowerCase();
+              const category = product.category.category.toLowerCase();
+              pm.expect(name.includes(term) || category.includes(term),
+                  product.name + " does not match '" + term + "'").to.be.true;
+          });
+      });
+    language: text/javascript
+order: 4000
