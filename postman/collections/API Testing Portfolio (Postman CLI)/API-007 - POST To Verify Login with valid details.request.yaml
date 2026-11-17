@@ -1,0 +1,91 @@
+$kind: http-request
+name: "API-007: POST To Verify Login with valid details"
+url: "{{baseUrl}}/api/verifyLogin"
+method: POST
+body:
+  type: urlencoded
+  content:
+    - key: email
+      value: "{{validEmail}}"
+    - key: password
+      value: "{{validPassword}}"
+scripts:
+  - type: beforeRequest
+    code: |-
+      // Precondition: a registered account must exist. Create a fresh,
+      // timestamped one (same approach as fixtures/testUser.ts) so the
+      // login always has valid credentials and runs never collide.
+      const email = `qatest1234.${Date.now()}@example.com`;
+      const password = "Test@1234";
+
+      pm.collectionVariables.set("validEmail", email);
+      pm.collectionVariables.set("validPassword", password);
+
+      const fields = {
+          name: "qatest1234",
+          email: email,
+          password: password,
+          title: "Mr",
+          birth_date: "10",
+          birth_month: "5",
+          birth_year: "1995",
+          firstname: "QA",
+          lastname: "Test",
+          company: "QA Company",
+          address1: "123 Test Street",
+          address2: "",
+          country: "United States",
+          zipcode: "10001",
+          state: "NY",
+          city: "New York",
+          mobile_number: "5555555555"
+      };
+
+      pm.sendRequest({
+          url: pm.variables.get("baseUrl") + "/api/createAccount",
+          method: "POST",
+          body: {
+              mode: "urlencoded",
+              urlencoded: Object.keys(fields).map(function (key) {
+                  return { key: key, value: fields[key] };
+              })
+          }
+      }, function (err, res) {
+          if (err || res.json().responseCode !== 201) {
+              throw new Error("Failed to create test user: " + (err || res.text()));
+          }
+      });
+    language: text/javascript
+  - type: afterResponse
+    code: |-
+      // Steps follow API-007 in docs/API_TEST_CASES.md (step 1 is the request).
+
+      pm.test("Response body is valid JSON", function () {
+          pm.expect(function () { pm.response.json(); }).not.to.throw();
+      });
+
+      const body = pm.response.json();
+
+      pm.test("responseCode is 200", function () {
+          pm.expect(body.responseCode).to.eql(200);
+      });
+
+      pm.test("Message is 'User exists!'", function () {
+          pm.expect(body.message).to.eql("User exists!");
+      });
+
+      // Cleanup: delete the account created in the pre-request script so
+      // test users don't pile up on the shared site.
+      pm.sendRequest({
+          url: pm.variables.get("baseUrl") + "/api/deleteAccount",
+          method: "DELETE",
+          body: {
+              mode: "urlencoded",
+              urlencoded: [
+                  { key: "email", value: pm.collectionVariables.get("validEmail") },
+                  { key: "password", value: pm.collectionVariables.get("validPassword") }
+              ]
+          }
+      }, function () {});
+    language: text/javascript
+order: 7000

@@ -7,6 +7,6 @@ description: |-
   though the body is JSON. The real result is the `responseCode` field in the
   body, so tests assert on that rather than on the HTTP status or header.
 variables:
-  - key: baseUrl
-    value: 'https://automationexercise.com'
-    description: Overridden by the AutomationExercise environment when run with -e.
+  baseUrl: https://automationexercise.com
+  validEmail: ""
+  validPassword: ""
