@@ -114,7 +114,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
   2. Confirm `responseCode` is `400`
   3. Confirm the error message
 - **Expected Result:** `responseCode` is `400` with message `Bad request, search_product parameter is missing in POST request.`
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Authentication
 

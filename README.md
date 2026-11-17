@@ -8,16 +8,16 @@ Snapshot updated: **2026-11-17**.
 ### UI Tests (Playwright)
 
 - **26 of 26** planned Test IDs automated (100%).
-- **24 passed / 1 failed / 1 flaky / 0 skipped** out of **26** automated Test IDs, each run on Chromium, Firefox, and WebKit.
+- **17 passed / 1 failed / 8 flaky / 0 skipped** out of **26** automated Test IDs, each run on Chromium, Firefox, and WebKit.
 - Failing: TID-024.
-- Last run duration: **777.4s**.
+- Last run duration: **1260.7s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 
 ### API Tests (Postman)
 
-- **5 of 16** planned API Test IDs automated (31%).
-- **5 passed / 0 failed / 0 flaky / 0 skipped** out of **5** automated API Test IDs, run with Postman CLI.
-- Last run duration: **3.9s**.
+- **6 of 16** planned API Test IDs automated (38%).
+- **6 passed / 0 failed / 0 flaky / 0 skipped** out of **6** automated API Test IDs, run with Postman CLI.
+- Last run duration: **1.4s**.
 - [View the full Postman report](https://cncalumpad.github.io/Playwright-Test-Portfolio/api/) for request-by-request results on any failure.
 <!-- SNAPSHOT:END -->
 
@@ -65,7 +65,7 @@ Full details (requests, test data, expected responses) live in [`docs/API_TEST_C
 | API-003 | Get All Brands List | Brands | Medium | Automated |
 | API-004 | PUT To All Brands List | Brands | Medium | Automated |
 | API-005 | POST To Search Product | Search | High | Automated |
-| API-006 | POST To Search Product without search_product parameter | Search | Medium | Not Started |
+| API-006 | POST To Search Product without search_product parameter | Search | Medium | Automated |
 | API-007 | POST To Verify Login with valid details | Authentication | Critical | Not Started |
 | API-008 | POST To Verify Login without email parameter | Authentication | High | Not Started |
 | API-009 | DELETE To Verify Login | Authentication | Medium | Not Started |
