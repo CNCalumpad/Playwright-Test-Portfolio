@@ -98,7 +98,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
   3. Confirm `products` is a non-empty array
   4. Confirm every returned product is related to the search term (e.g. its name or category contains "top")
 - **Expected Result:** `responseCode` is `200` and only products matching the search term are returned.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### API-006: POST To Search Product without search_product parameter
 
