@@ -1,0 +1,28 @@
+$kind: http-request
+name: "API-006: POST To Search Product without search_product parameter"
+url: "{{baseUrl}}/api/searchProduct"
+method: POST
+body:
+  type: urlencoded
+  content: []
+scripts:
+  - type: afterResponse
+    code: |-
+      // Steps follow API-006 in docs/API_TEST_CASES.md (step 1 is the request).
+
+      pm.test("Response body is valid JSON", function () {
+          pm.expect(function () { pm.response.json(); }).not.to.throw();
+      });
+
+      const body = pm.response.json();
+
+      pm.test("responseCode is 400", function () {
+          pm.expect(body.responseCode).to.eql(400);
+      });
+
+      pm.test("responseMessage is 'Bad request, search_product parameter is missing in POST request.'", function () {
+          var jsonData = pm.response.json();
+          pm.expect(body.message).to.eql("Bad request, search_product parameter is missing in POST request.");
+      });
+    language: text/javascript
+order: 5000
