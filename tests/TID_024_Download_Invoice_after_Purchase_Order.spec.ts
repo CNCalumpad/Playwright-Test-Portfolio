@@ -1,4 +1,3 @@
-import fs from "fs";
 import { test, expect } from "../fixtures";
 import { HomePage } from "../pages/HomePage";
 import { ProductsPage } from "../pages/ProductsPage";
@@ -12,7 +11,7 @@ import { PaymentDonePage } from "../pages/PaymentDonePage";
 import { AccountDeletedPage } from "../pages/AccountDeletedPage";
 import { createNewUser, testCard } from "../utils/testData";
 
-test("TID-024: Download Invoice after purchase order", async ({ page }, testInfo) => {
+test("TID-024: Download Invoice after purchase order", async ({ page }) => {
   // A full order flow loads ~10 pages; triple the default 30s timeout.
   test.slow();
 
@@ -107,15 +106,10 @@ test("TID-024: Download Invoice after purchase order", async ({ page }, testInfo
 
   // Click "Download Invoice" and verify that the invoice file downloads
   await test.step('Click "Download Invoice" and verify that the invoice file downloads', async () => {
-    const downloadPromise = page.waitForEvent("download");
-    await paymentDonePage.downloadInvoiceButton.click();
-    const download = await downloadPromise;
+    const invoice = await paymentDonePage.downloadInvoice();
 
-    expect(download.suggestedFilename()).toBe("invoice.txt");
-    const invoicePath = testInfo.outputPath(download.suggestedFilename());
-    await download.saveAs(invoicePath);
-    const invoice = fs.readFileSync(invoicePath, "utf-8");
-    expect(invoice).toContain(`${user.firstName} ${user.lastName}`);
+    expect(invoice.filename).toBe("invoice.txt");
+    expect(invoice.text).toContain(`${user.firstName} ${user.lastName}`);
   });
 
   // Click "Continue"
