@@ -288,7 +288,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   15. Confirm the order success message appears
   16. Click 'Delete Account' and confirm deletion
 - **Expected Result:** The user successfully registers mid-checkout, the order is placed, and an order confirmation is displayed.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-015: Place Order: Register before Checkout
 
@@ -313,7 +313,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   13. Confirm the order success message appears
   14. Click 'Delete Account' and confirm deletion
 - **Expected Result:** The user successfully registers, completes checkout, and receives an order confirmation.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-016: Place Order: Login before Checkout
 
@@ -337,7 +337,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   12. Confirm the order success message appears
   13. Click 'Delete Account' and confirm deletion
 - **Expected Result:** The logged-in user successfully completes checkout and receives an order confirmation.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Cart
 
@@ -356,7 +356,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   5. Click the 'X' next to a product
   6. Confirm the product is removed from the cart
 - **Expected Result:** The selected product is removed from the cart, and the cart total and quantity update accordingly.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Products
 
@@ -376,7 +376,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   6. Click a sub-category link under another category (e.g., 'Men')
   7. Confirm the corresponding category page loads
 - **Expected Result:** The selected category and sub-category display only products belonging to that category.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-019: View & Cart Brand Products
 
@@ -394,7 +394,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   6. Click a different brand link
   7. Confirm that brand's page loads with its products
 - **Expected Result:** The selected brand page displays only products belonging to that brand, and selected products are added to the cart successfully.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Cart
 
@@ -417,7 +417,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   9. Return to the Cart page
   10. Confirm the products are still present after login
 - **Expected Result:** Cart items added via search remain present and unchanged after the user logs in.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Products
 
@@ -438,7 +438,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   7. Click 'Submit'
   8. Confirm a thank-you/success message appears
 - **Expected Result:** The review is submitted successfully and a confirmation message is displayed on the product page.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Cart
 
@@ -457,7 +457,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   5. Click 'View Cart'
   6. Confirm the product appears in the cart
 - **Expected Result:** The recommended product is added to the cart successfully with correct details.
-- **Status:** Not Started
+- **Status:** Automated
 
 ## Checkout
 
@@ -482,7 +482,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   11. Confirm the billing address matches the registration address
   12. Click 'Delete Account' and confirm deletion
 - **Expected Result:** The delivery and billing addresses displayed at checkout match the addresses entered during registration.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-024: Download Invoice after purchase order
 
@@ -509,7 +509,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   15. Click 'Continue'
   16. Click 'Delete Account' and confirm deletion
 - **Expected Result:** The invoice file downloads successfully after order completion.
-- **Status:** Not Started
+- **Status:** Started
 
 ## Navigation
 
@@ -528,7 +528,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   5. Click the scroll-to-top arrow button
   6. Confirm the page scrolls back to the top and the header text is visible
 - **Expected Result:** Clicking the arrow button scrolls the page back to the top after the user has scrolled down.
-- **Status:** Not Started
+- **Status:** Automated
 
 ### TID-026: Verify Scroll Up without 'Arrow' button and Scroll Down functionality
 
@@ -545,4 +545,4 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   5. Manually scroll back up to the top
   6. Confirm the page returns to the top and the header text is visible
 - **Expected Result:** Manual scroll actions correctly move the page down and back to the top without using the arrow button.
-- **Status:** Not Started
+- **Status:** Automated
