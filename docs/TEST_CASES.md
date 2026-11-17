@@ -509,7 +509,7 @@ This is the test case doc for the automated tests I will be doing. Each case's I
   15. Click 'Continue'
   16. Click 'Delete Account' and confirm deletion
 - **Expected Result:** The invoice file downloads successfully after order completion.
-- **Status:** Started
+- **Status:** Automated
 
 ## Navigation
 
