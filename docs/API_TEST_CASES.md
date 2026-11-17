@@ -132,7 +132,7 @@ This is the test case doc for the API tests I will be automating with Postman CL
   2. Confirm `responseCode` is `200`
   3. Confirm the success message
 - **Expected Result:** `responseCode` is `200` with message `User exists!`
-- **Status:** Not Started
+- **Status:** Automated
 
 ### API-008: POST To Verify Login without email parameter
 
