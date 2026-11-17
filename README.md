@@ -8,16 +8,15 @@ Snapshot updated: **2026-11-17**.
 ### UI Tests (Playwright)
 
 - **26 of 26** planned Test IDs automated (100%).
-- **17 passed / 1 failed / 8 flaky / 0 skipped** out of **26** automated Test IDs, each run on Chromium, Firefox, and WebKit.
-- Failing: TID-024.
-- Last run duration: **1260.7s**.
+- **23 passed / 0 failed / 3 flaky / 0 skipped** out of **26** automated Test IDs, each run on Chromium, Firefox, and WebKit.
+- Last run duration: **765.3s**.
 - [View the full Playwright report](https://cncalumpad.github.io/Playwright-Test-Portfolio/) for step-by-step traces on any failure.
 
 ### API Tests (Postman)
 
 - **6 of 16** planned API Test IDs automated (38%).
 - **6 passed / 0 failed / 0 flaky / 0 skipped** out of **6** automated API Test IDs, run with Postman CLI.
-- Last run duration: **1.4s**.
+- Last run duration: **3.3s**.
 - [View the full Postman report](https://cncalumpad.github.io/Playwright-Test-Portfolio/api/) for request-by-request results on any failure.
 <!-- SNAPSHOT:END -->
 
@@ -50,7 +49,7 @@ Full details (steps, test data, preconditions) live in [`docs/TEST_CASES.md`](./
 | TID-021 | Add review on product | Products | Medium | Automated |
 | TID-022 | Add to cart from Recommended items | Cart | Medium | Automated |
 | TID-023 | Verify address details in checkout page | Checkout | Critical | Automated |
-| TID-024 | Download Invoice after purchase order | Checkout | High | Started |
+| TID-024 | Download Invoice after purchase order | Checkout | High | Automated |
 | TID-025 | Verify Scroll Up using 'Arrow' button and Scroll Down functionality | Navigation | Low | Automated |
 | TID-026 | Verify Scroll Up without 'Arrow' button and Scroll Down functionality | Navigation | Low | Automated |
 
